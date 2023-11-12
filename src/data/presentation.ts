@@ -16,7 +16,7 @@ const presentation: Presentation = {
   title: "Hi, I’m Lu ✨",
   profile: "/profile.jpg",
   description:
-    "Hello, i'm a full stack developer with over *1 years* of web experience. I am currently working with *NextJS and Typescript*.",
+    "Hello, I'm a full stack developer with over *1 years* of web experience. I am currently working with *NextJS and Typescript*.",
   socials: [
     {
       label: "Linkedin",
