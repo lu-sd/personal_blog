@@ -1,8 +1,8 @@
 ---
 title: "Border in tailwindCss"
 publishedAt: 2023-11-14
-description: "some details about border in tailwindCss mdx"
-slug: "tailwindcss-03"
+description: "some details about border in tailwindCss"
+slug: "tailwindcss-01"
 isPublish: true
 ---
 
@@ -17,37 +17,15 @@ Usage: Applied using various utility classes to set border width, color, and sty
 Effect: Modifies the visual appearance of an element by adding borders.
 Layout Impact: Affects the layout of the document by taking up space.
 
-import Bolder from "@/codeSnippet/tailwind.tsx";
-import Bolder_raw from "@/codeSnippet/tailwind.tsx?raw";
-
-<Bolder />
-<pre> ${Bolder_raw}</pre>
-
-embed code
-
 ```html
-<div class="border border-2 border-solid border-blue-500">test</div>
+<div class=" border-2 border-solid border-blue-500">
+  <!-- Content goes here -->
+</div>
 ```
 
-direct rendering
+### Outline
 
-<div class="border border-2 border-solid border-blue-500">test</div>
-
-```html
-<label class="block">
-  <span class="block after:ml-0.5 after:text-red-500 after:content-['*'] ">
-    Email
-  </span>
-  <input type="email" name="email" class="..." placeholder="you@example.com" />
-</label>
-```
-
-<label class="block">
-  <span class="block after:ml-0.5 after:text-red-500 after:content-['*'] ">
-    Email
-  </span>
-  <input type="email" name="email" class="..." placeholder="you@example.com" />
-</label>
+Outlines are similar to borders in that they define the edges of an element, but they are typically used for non-visual purposes, such as focus states.
 
 Purpose: Outlines are typically used for non-visual purposes, such as indicating focus states for accessibility.
 Usage: Applied using the outline utility, with customization for color, style, width and offset.
@@ -106,9 +84,3 @@ In Tailwind CSS, the `divide-y `utility is used to add a vertical (y-axis) borde
   <p class="py-2">Third element</p>
 </div>
 ```
-
-<div class="divide-y divide-dashed divide-gray-500 hover:divide-solid">
-  <p class="py-2">First element</p>
-  <p class="py-2">Second element</p>
-  <p class="py-2">Third element</p>
-</div>

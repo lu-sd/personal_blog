@@ -2,7 +2,7 @@
 title: "Pseudo classes and elements in tailwindCss"
 publishedAt: 2023-11-12
 description: "Tailwind includes modifiers to deal with pseudo"
-slug: "tailwindcss-02"
+slug: "tailwindcss-03"
 isPublish: true
 ---
 

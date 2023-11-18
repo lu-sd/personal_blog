@@ -2,7 +2,7 @@
 title: "How to deal with height in tailwindCss"
 publishedAt: 2023-11-15
 description: "Height Algorithms"
-slug: "tailwindcss-03"
+slug: "tailwindcss-02"
 isPublish: true
 ---
 
