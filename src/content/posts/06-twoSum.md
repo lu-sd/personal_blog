@@ -4,7 +4,6 @@ publishedAt: 2023-11-27
 description: " use map to store calculations"
 slug: "06-twoSum"
 isPublish: true
-tag:Algorithm
 ---
 
 Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.

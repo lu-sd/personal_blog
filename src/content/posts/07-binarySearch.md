@@ -4,7 +4,6 @@ publishedAt: 2023-11-28
 description: "only can ben used in sorted array"
 slug: "07-binarySearch"
 isPublish: true
-tag:Algorithm
 ---
 
 Given an array of integers nums which is sorted in ascending order, and an integer target, write a function to search target in nums. If target exists, then return its index. Otherwise, return -1.

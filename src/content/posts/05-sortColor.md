@@ -4,7 +4,6 @@ publishedAt: 2023-11-27
 description: "base on bubble sorting in array"
 slug: "05-sortColor"
 isPublish: true
-tag:Algorithm
 ---
 
 Given an array nums with n objects colored red, white, or blue, sort them in-place so that objects of the same color are adjacent, with the colors in the order red, white, and blue.
