@@ -1,7 +1,7 @@
 ---
 title: "Algorithm-110,701"
 publishedAt: 2024-01-08
-description: "DFS"
+description: "DFS Backtracking "
 slug: "11-balancedBinaryTree,inserIntoBST"
 isPublish: true
 ---
@@ -53,3 +53,67 @@ function insertBst(bst, val) {
 ```
 
 Missing Link Assignment: In the recursive calls insertBst(bst.left, val) and insertBst(bst.right, val), the result of the recursive call (which is potentially a new node) is returned, but not linked back to the bst. This means that your function will not properly insert the new value into the BST.
+
+257: Give all paths of a Binary tree,form root to leaf in any order
+
+```js
+function dfs(root, path, res) {
+  if (!root.left && !root.right) {
+    path.push(root.val);
+    const curr = path.join("->");
+    res.push(curr);
+    path.pop();
+    return;
+  }
+  for (const node of [root.right, root.left]) {
+    if (node) {
+      path.push(root.val);
+      dfs(node, path, res);
+      path.pop();
+    }
+  }
+}
+
+function binaryTreePaths(root) {
+  let res = [];
+  if (root) {
+    dfs(root, [], res);
+  }
+  return res;
+}
+```
+
+257+: Given a ternary tree (each node of the tree has at most three children), find all root-to-leaf paths.
+
+```js
+class Node {
+  constructor(val, children = []) {
+    this.val = val;
+    this.children = children;
+  }
+}
+function dfs(root, path, res) {
+  // exit condition, reached leaf node, append paths to results
+  if (root.children.length === 0) {
+    path.push(root.val);
+    const cur_path = path.join("->");
+    res.push(cur_path);
+    path.pop();
+    return;
+  }
+  // dfs on each non-null child
+  for (const child of root.children) {
+    if (child) {
+      path.push(root.val);
+      dfs(child, path, res);
+      path.pop();
+    }
+  }
+}
+
+function ternaryTreePaths(root) {
+  let res = [];
+  if (root) dfs(root, [], res);
+  return res;
+}
+```
