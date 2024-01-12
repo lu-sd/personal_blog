@@ -117,3 +117,29 @@ function ternaryTreePaths(root) {
   return res;
 }
 ```
+
+Given a non-negative integer n, find all n-letter words composed by 'a' and 'b', return them in a list of strings in lexicographical order.
+
+```js
+function dfs(n, path, starIndex, res) {
+  // Base case: if the length of the path equals n, join the path and add to results
+  if (starIndex === n) {
+    const currentPath = path.join("");
+    res.push(currentPath);
+    return;
+  }
+
+  // Recursive case: iterate over 'a' and 'b', explore further, and backtrack
+  for (const letter of ["a", "b"]) {
+    path.push(letter);
+    dfs(n, path, starIndex + 1, res);
+    path.pop();
+  }
+}
+
+function letterCombination(n) {
+  const res = [];
+  dfs(n, [], 0, res);
+  return res;
+}
+```
