@@ -52,7 +52,7 @@ function insertBst(bst, val) {
 }
 ```
 
-Missing Link Assignment: In the recursive calls insertBst(bst.left, val) and insertBst(bst.right, val), the result of the recursive call (which is potentially a new node) is returned, but not linked back to the bst. This means that your function will not properly insert the new value into the BST.
+Missing Link Assignment: In the recursive calls insertBst(bst.left, val) and insertBst(bst.right, val), the result of the recursive call (which is potentially a new node) is returned, but not linked back to the bst. This means that your function will not properly insert the new value into the BST.So that's the importance of reference.
 
 257: Give all paths of a Binary tree,form root to leaf in any order
 
