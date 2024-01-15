@@ -143,3 +143,17 @@ function letterCombination(n) {
   return res;
 }
 ```
+
+Given a binary search tree (BST), find the lowest common ancestor (LCA) node of two given nodes in the BST.
+
+```js
+function lcaOnBst(bst, p, q) {
+  let min = Math.min(p, q);
+  let max = Math.max(p, q);
+  if (bst.val < min) {
+    return lcaOnBst(bst.right, p, q);
+  } else if (bst.val > max) {
+    return lcaOnBst(bst.left, p, q);
+  } else return bst.val;
+}
+```
