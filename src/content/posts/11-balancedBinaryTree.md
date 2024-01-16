@@ -157,3 +157,17 @@ function lcaOnBst(bst, p, q) {
   } else return bst.val;
 }
 ```
+
+104 Given the root of a binary tree, return its maximum depth.
+
+```js
+function maxDepth(root: TreeNode | null): number {
+  function hight(root) {
+    if (!root) return 0;
+    const left = hight(root.left);
+    const right = hight(root.right);
+    return Math.max(left, right) + 1;
+  }
+  return root === null ? 0 : hight(root);
+}
+```
