@@ -1,5 +1,5 @@
 ---
-title: "Algorithm-110,701"
+title: "Algorithm-110,701,257,104"
 publishedAt: 2024-01-08
 description: "DFS Backtracking "
 slug: "11-balancedBinaryTree,inserIntoBST"
@@ -24,7 +24,7 @@ function isBalanced(root) {
 }
 ```
 
-701 You are given the root node of a binary search tree (BST) and a value to insert into the tree. Return the root node of the BST after the insertion. It is guaranteed that the new value does not exist in the original BST.
+701:You are given the root node of a binary search tree (BST) and a value to insert into the tree. Return the root node of the BST after the insertion. It is guaranteed that the new value does not exist in the original BST.
 
 ```js
 function insertIntoBST(root: TreeNode | null, val: number): TreeNode | null {
@@ -144,7 +144,7 @@ function letterCombination(n) {
 }
 ```
 
-Given a binary search tree (BST), find the lowest common ancestor (LCA) node of two given nodes in the BST.
+235:Given a binary search tree (BST), find the lowest common ancestor (LCA) node of two given nodes in the BST.
 
 ```js
 function lcaOnBst(bst, p, q) {
