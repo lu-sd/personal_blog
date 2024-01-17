@@ -13,19 +13,57 @@ Design an algorithm to serialize and deserialize a binary tree. There is no rest
 ### Encodes a tree to a single string.
 
 ```js
+function dfs(root, res) {
+  if (!root) {
+    res.push("x");
+    return;
+  }
+  res.push(root.val);
+  dfs(root.left, res);
+  dfs(root.right, res);
+}
 function serialize(root: TreeNode | null): string {
-  function dfs(root, res) {
+  const res = [];
+  dfs(root, res);
+  return res.join(" ");
+}
+```
+
+if you don't want to use pass down a state,you can write this way:
+
+```js
+function serialize(root) {
+  const res = [];
+
+  function dfs(root) {
     if (!root) {
       res.push("x");
       return;
     }
     res.push(root.val);
-    dfs(root.left, res);
-    dfs(root.right, res);
+    dfs(root.left);
+    dfs(root.right);
   }
-  const res = [];
-  dfs(root, res);
+
+  dfs(root);
   return res.join(" ");
+}
+```
+
+Also ,you can use divide and conquer like this:
+
+```js
+function serialize(root) {
+  function dfs(root) {
+    if (!root) {
+      return "x";
+    }
+    const left = dfs(root.left);
+    const right = dfs(root.right);
+    return root.val + " " + left + " " + right;
+  }
+
+  return dfs(root);
 }
 ```
 
@@ -58,3 +96,20 @@ value: The next value in the iteration sequence.
 done: A boolean indicating whether or not the iteration is complete (i.e., whether there are more values to iterate over). When the iteration is finished, done is true.
 
 Usage in for...of Loop: When a for...of loop is used on an iterable object, JavaScript automatically calls the object's [Symbol.iterator]() method to get the iterator. Then, it repeatedly calls the iterator's next() method to get values until done is true.
+
+If you dont't know too much about Symbol,that's OK. we can try another way to conquer it .
+
+```js
+function deserialize(s) {
+  const nodes = s.split(" ");
+  function dfs(nodes) {
+    let val = nodes.shift();
+    if (val === "x") return;
+    const cur = new Node(parseInt(val));
+    cur.left = dfs(nodes);
+    cur.right = dfs(nodes);
+    return cur;
+  }
+  return dfs(nodes);
+}
+```
