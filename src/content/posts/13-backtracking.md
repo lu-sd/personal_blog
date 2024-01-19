@@ -6,7 +6,7 @@ slug: "13-backtracking"
 isPublish: true
 ---
 
-## Template for backtracking
+## Template for backtracking 1
 
 ```js
 function dfs(startIndex, path, res, [...additional states]) {
@@ -56,5 +56,61 @@ function permute(nums: number[]): number[][] {
   const ans: number[][] = [];
   dfs(0, [], new Array(nums.length).fill(false), ans);
   return ans;
+}
+```
+
+## Template for backtracking 2
+
+```js
+function dfs(startIndex, target) {
+    if (isLeaf(startIndex)) {
+        return 1
+    }
+    int ans = initialValue;
+    for (const edge of getEdges(startIndex, [...additional states])) {
+        if (additional states) {
+            update([...additional states]);
+        }
+        ans = aggregate(ans, dfs(startIndex + edge.length(), [...additional states]))
+        if (additional states) {
+            revert([...additional states]);
+        }
+    }
+    return ans;
+}
+```
+
+Given a string and a list of words, determine if the string can be constructed from concatenating words from the list of words. A word can be used multiple times.
+
+Input:
+
+target = "algomonster"
+words = ["algo", "monster"]
+
+Output: true
+
+```js
+function wordBreak(s, words) {
+  const memo = {};
+
+  function dfs(startIndex) {
+    if (startIndex === s.length) return true;
+
+    if (startIndex in memo) return memo[startIndex];
+
+    let ans = false;
+    for (const word of words) {
+      if (s.slice(startIndex).startsWith(word)) {
+        if (dfs(startIndex + word.length)) {
+          ans = true;
+          break;
+        }
+      }
+    }
+    memo[startIndex] = ans;
+    return ans;
+  }
+
+  return dfs(0);
 }
 ```
