@@ -1,7 +1,7 @@
 ---
 title: "Algorithm-297"
 publishedAt: 2024-01-16
-description: "DFS "
+description: "DFS-Serialize and Deserialize "
 slug: "12-Serialize and Deserialize Binary Tree"
 isPublish: true
 ---
