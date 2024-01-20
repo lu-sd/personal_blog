@@ -29,7 +29,7 @@ function serialize(root: TreeNode | null): string {
 }
 ```
 
-if you don't want to use pass down a state,you can write this way:
+if you don't want to pass down a state,you can write this way:
 
 ```js
 function serialize(root) {
@@ -50,7 +50,7 @@ function serialize(root) {
 }
 ```
 
-Also ,you can use divide and conquer like this:
+Also, you can use divide and conquer like this:
 
 ```js
 function serialize(root) {
