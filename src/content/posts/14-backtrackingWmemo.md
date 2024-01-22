@@ -1,8 +1,8 @@
 ---
 title: "Algorithm-70"
 publishedAt: 2024-01-21
-description: "Backtracking with memo "
-slug: "13-backtracking"
+description: "Backtracking with memo"
+slug: "14-backtrackingWithMemo"
 isPublish: true
 ---
 
