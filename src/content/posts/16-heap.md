@@ -19,28 +19,25 @@ class MinHeap {
         this.heapifyUp(this.heap.length - 1);
     }
 
-    private heapifyUp(index: number) {
-        if (index > 0) {
-            const parentIndex = Math.floor((index - 1) / 2);
-
-            if (this.heap[parentIndex] > this.heap[index]) {
-               this.swap(parentIndex, index);
-                this.heapifyUp(parentIndex);
-            }
-        }
-    }
-
-    public extractMin(): number | null {
-        if (this.heap.length === 0) {
-            return null;
-        }
+    public delete(): number | null {
+        if (this.heap.length === 0) return null;
 
         const min = this.heap[0];
-        this.heap[0] = this.heap.pop()!;
+        this.heap[0] = this.heap.pop()
         this.heapifyDown(0);
         return min;
     }
 
+    private heapifyUp(index: number) {
+        if (index === 0) return
+
+        const parentIndex = Math.floor((index - 1) / 2);
+        if (this.heap[parentIndex] > this.heap[index]) {
+               this.swap(parentIndex, index);
+                this.heapifyUp(parentIndex);
+            }
+
+    }
     private heapifyDown(index: number) {
         const leftChildIndex = 2 * index + 1;
         const rightChildIndex = 2 * index + 2;
@@ -54,11 +51,12 @@ class MinHeap {
             smallest = rightChildIndex;
         }
 
-        if (smallest !== index) {
+        if (smallest === index) return
             this.swap(index, smallest);
             this.heapifyDown(smallest);
-        }
+
     }
+
     private swap(index1: number, index2: number) {
         const temp = this.heap[index1];
         this.heap[index1] = this.heap[index2];
@@ -69,4 +67,22 @@ class MinHeap {
     }
 }
 
+```
+
+Find the kth smallest element in an unsorted array. Note that it is the kth smallest element in the sorted order, not necessarily the kth distinct element.
+
+```js
+function smallestK(arr: number[], k: number): number[] {
+  const heap = new Minheap();
+  for (const item of arr) {
+    heap.insert(item);
+  }
+
+  const res: number[] = [];
+  for (let i = 0; i < k; i++) {
+    res.push(heap.delete());
+  }
+
+  return res;
+}
 ```
