@@ -21,6 +21,7 @@ class MinHeap {
 
     public delete(): number | null {
         if (this.heap.length === 0) return null;
+        if(this.heap.length === 1) return this.heap[0]
 
         const min = this.heap[0];
         this.heap[0] = this.heap.pop()
@@ -42,6 +43,13 @@ class MinHeap {
         const leftChildIndex = 2 * index + 1;
         const rightChildIndex = 2 * index + 2;
         let smallest = index;
+
+        // for(const item of [leftChildIndex,rightChildIndex]){
+        //   if(item < this.heap.length && this.heap[item] < this.heap[smallest]){
+        //     smallest = item
+        //   }
+
+        // }
 
         if (leftChildIndex < this.heap.length && this.heap[leftChildIndex] < this.heap[smallest]) {
             smallest = leftChildIndex;
