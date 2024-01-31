@@ -1,5 +1,5 @@
 ---
-title: "Algorithm-about heap"
+title: "Algorithm-about heap-973"
 publishedAt: 2024-01-26
 description: "Implement a Minheap"
 slug: "16-heap"
