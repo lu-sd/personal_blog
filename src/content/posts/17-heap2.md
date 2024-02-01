@@ -110,3 +110,31 @@ function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
   return dummy.next;
 }
 ```
+
+23+: 23:You are given an array of k lists, each list is sorted in ascending order.
+
+Merge all the lists into one sorted list and return it.
+
+```js
+function mergeKSortedLists(lists) {
+  const heap = new MinHeap();
+  const res = [];
+
+  for (const curList of lists) {
+    heap.insert(new HeapItem([curList[0], curList, 0], curList[0]));
+  }
+
+  while (heap.size() > 0) {
+    let [val, curList, headIdx] = heap.delete().item;
+    res.push(val);
+    headIdx++;
+
+    if (headIdx < curList.length) {
+      heap.insert(
+        new HeapItem([curList[headIdx], curList, headIdx], curList[headIdx])
+      );
+    }
+  }
+  return res;
+}
+```
