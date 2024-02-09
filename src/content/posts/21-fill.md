@@ -53,3 +53,44 @@ arrays[0].push("Hello");
 
 console.log(arrays); // Output: [["Hello"], ["Hello"], ["Hello"]]
 ```
+
+200:Given an m x n 2D binary grid grid which represents a map of '1's (land) and '0's (water), return the number of islands.
+
+An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+
+```js
+function numIslands(grid: string[][]): number {
+  const m = grid.length;
+  const n = grid[0].length;
+  const seen = Array.from({ length: m }, () => new Array(n).fill(false));
+  const dir = [
+    [1, 0],
+    [-1, 0],
+    [0, 1],
+    [0, -1],
+  ];
+  let res = 0;
+
+  function dfs(r: number, c: number) {
+    if (r < 0 || r >= m || c < 0 || c >= n) return;
+    if (grid[r][c] === "0") return;
+    if (seen[r][c]) return;
+
+    seen[r][c] = true;
+    for (const [x, y] of dir) {
+      dfs(r + x, c + y);
+    }
+  }
+
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      if (grid[i][j] === "1" && seen[i][j] === false) {
+        res++;
+        dfs(i, j);
+      }
+    }
+  }
+
+  return res;
+}
+```
