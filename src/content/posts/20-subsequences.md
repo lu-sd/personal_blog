@@ -1,5 +1,5 @@
 ---
-title: "Backtracking solve subsequences - 78,91,491 "
+title: "Backtracking solve subsets and subsequences - 78,91,491 "
 publishedAt: 2024-02-06
 description: "basic and conditonal problems"
 slug: "20-subsequences"
