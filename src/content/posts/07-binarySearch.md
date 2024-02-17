@@ -1,5 +1,5 @@
 ---
-title: "Algorithm-704"
+title: "Algorithm-704,34"
 publishedAt: 2023-11-28
 description: "only can ben used in sorted array"
 slug: "07-binarySearch"
@@ -55,3 +55,79 @@ nums is divided into half each time. In the worst-case scenario, we need to cut 
 - Space complexity: O(1)
 
 During the loop, we only need to record three indexes, left, right, and mid, they take constant space.
+
+34:Given an array of integers nums sorted in non-decreasing order, find the starting and ending position of a given target value.
+
+If target is not found in the array, return [-1, -1].
+
+You must write an algorithm with O(log n) runtime complexity.
+
+```js
+function searchRange(nums: number[], target: number): number[] {
+  function lowBound(nums: number[], target: number): number {
+    let l = 0;
+    let r = nums.length - 1;
+
+    while (l <= r) {
+      let mid = Math.floor((l + r) / 2);
+      if (nums[mid] >= target) {
+        r = mid - 1;
+      } else {
+        l = mid + 1;
+      }
+    }
+    return l;
+  }
+
+  const start = lowBound(nums, target);
+  // Check if start is out of bounds or if the target isn't at the start index
+  if (start === nums.length || nums[start] !== target) return [-1, -1];
+  // Use target + 1 to find the upper bound, then subtract 1 to get the last occurrence of target
+  const end = lowBound(nums, target + 1) - 1;
+
+  return [start, end];
+}
+```
+
+method II
+
+```js
+function searchRange(nums: number[], target: number): number[] {
+  let l = 0;
+  let r = nums.length - 1;
+
+  let firstIdx = -1;
+  let lastIdx = -1;
+
+  // Find the first index of the target
+  while (l <= r) {
+    let mid = Math.floor((l + r) / 2);
+    if (nums[mid] < target) {
+      l = mid + 1;
+    } else {
+      r = mid - 1;
+      if (nums[mid] === target) firstIdx = mid;
+    }
+  }
+
+  // Reset l and r for finding the last index
+  l = 0;
+  r = nums.length - 1;
+
+  // Find the last index of the target
+  while (l <= r) {
+    let mid = Math.floor((l + r) / 2);
+    if (nums[mid] <= target) {
+      l = mid + 1;
+      if (nums[mid] === target) lastIdx = mid;
+    } else {
+      r = mid - 1;
+    }
+  }
+
+  // If firstIdx is still -1, the target is not found
+  if (firstIdx === -1) return [-1, -1];
+
+  return [firstIdx, lastIdx];
+}
+```
