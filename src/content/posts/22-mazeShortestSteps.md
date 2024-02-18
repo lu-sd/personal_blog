@@ -41,6 +41,7 @@ function nearestExit(maze: string[][], entrance: number[]): number {
       ) {
         //  this is for a exit check and return the steps
         if (nextR === 0 || nextR === m - 1 || nextC === 0 || nextC === n - 1) {
+          // d + 1 not d
           return d + 1;
         }
         //  Mark the current cell as visited
