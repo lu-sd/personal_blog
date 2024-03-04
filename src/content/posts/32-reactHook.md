@@ -24,7 +24,7 @@ Refs are an escape hatch. You should only use them when you have to “step outs
 
 useRef returns an object with a single property:current
 
-current: Initially, it’s set to the initialValue you have passed. You can later set it to something else. If you pass the ref object to React as a ref attribute to a JSX node, React will set its current property.On the next renders, useRef will return the same object.You instruct React to put a DOM node into myRef.current by passing <div ref={myRef}>.
+current: Initially, it’s set to the initialValue you have passed. You can later set it to something else. If you pass the ref object to React as a ref attribute to a JSX node, React will set its current property.On the next renders, useRef will return the same object.You instruct React to put a DOM node into myRef.current by passing by passing "myRef" as a prop to a React element using the ref attribute.
 
 When you change the ref.current property, React does not re-render your component. React is not aware of when you change it because a ref is a plain JavaScript object.
 
@@ -83,3 +83,23 @@ React calls your setup and cleanup functions whenever it’s necessary, which ma
   First, your cleanup code runs with the old props and state.
   Then, your setup code runs with the new props and state.
 - Your cleanup code runs one final time after your component is removed from the page (unmounts).
+
+## useMemo
+
+- Purpose: useMemo is used to memoize expensive calculations or values. If you have a computation that is expensive and doesn't need to be recalculated every time your component re-renders, you can use useMemo to remember the last calculated value and only recalculate it when one of its dependencies changes.
+
+- Usage: You pass a function that returns the value you want to compute and an array of dependencies to useMemo. React will only recompute the memoized value when one of the dependencies has changed.
+
+## useCallback
+
+- Purpose: useCallback is used to memoize functions themselves. This is particularly useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders. If you create a new function on every render, the child component will re-render every time because the function prop has changed. useCallback will return a memoized version of the callback that only changes if one of its dependencies changes.
+
+- Usage: You pass the function you want to memoize and an array of dependencies. React will give you back a memoized version of the function that only changes when one of the dependencies has changed.
+
+Key Differences
+
+What They Memoize: The key difference lies in what they are used for memoizing. useMemo is for memoizing values resulting from a function, while useCallback is for memoizing the function itself.
+
+Use Cases:
+Use useMemo to avoid expensive calculations on every render.
+Use useCallback to pass stable functions to components that require them, thus preventing unnecessary re-renders due to function reference changes.
