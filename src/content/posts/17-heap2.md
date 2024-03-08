@@ -1,5 +1,5 @@
 ---
-title: "Algorithm-about heap-23"
+title: "Algorithm-about heap-23,378"
 publishedAt: 2024-01-30
 description: "Implement a Minheap"
 slug: "17-heap2"
@@ -116,6 +116,16 @@ function mergeKLists(lists: Array<ListNode | null>): ListNode | null {
 Merge all the lists into one sorted list and return it.
 
 ```js
+class HeapItem {
+  item: number[];
+  priority: number;
+
+  constructor(item: number[], priority: number) {
+    this.item = item;
+    this.priority = priority;
+  }
+}
+
 function mergeKSortedLists(lists) {
   const heap = new MinHeap();
   const res = [];
@@ -135,6 +145,45 @@ function mergeKSortedLists(lists) {
       );
     }
   }
+  return res;
+}
+```
+
+378: Kth Smallest Element in a sorted Matrix
+
+```js
+class HeapItem {
+  item: number[];
+  priority: number;
+
+  constructor(item: number[], priority: number) {
+    this.item = item;
+    this.priority = priority;
+  }
+}
+
+function kthSmallest(matrix: number[][], k: number): number {
+  const minheap = new MinHeap();
+  const n = matrix.length;
+  let res;
+
+  for (let row = 0; row < Math.min(k, n); row++) {
+    const item = new HeapItem([matrix[row][0], row, 0], matrix[row][0]);
+    minheap.insert(item);
+  }
+
+  while (k > 0) {
+    const [ele, row, col] = minheap.delete().item;
+    res = ele;
+    k--;
+
+    if (col < n - 1) {
+      const nextVal = matrix[row][col + 1];
+      const nextItem = new HeapItem([nextVal, row, col + 1], nextVal);
+      minheap.insert(nextItem);
+    }
+  }
+
   return res;
 }
 ```
