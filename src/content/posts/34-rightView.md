@@ -1,5 +1,5 @@
 ---
-title: "Binary Tree Rigth Side View"
+title: "Binary Tree Right Side View"
 publishedAt: 2024-03-06
 description: "DFS and BFS"
 slug: "34-rightView"
