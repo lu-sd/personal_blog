@@ -27,7 +27,7 @@ function rightSideView(root: TreeNode | null): number[] {
 }
 ```
 
-DFS use global value and traverse right firstly.
+DFS use global value and traverse right node firstly.
 
 ```js
 function rightSideView(root: TreeNode | null): number[] {
