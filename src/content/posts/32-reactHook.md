@@ -96,7 +96,7 @@ React calls your setup and cleanup functions whenever it’s necessary, which ma
 
 - Usage: You pass the function you want to memoize and an array of dependencies. React will give you back a memoized version of the function that only changes when one of the dependencies has changed.
 
-Key Differences
+Key Differences between useMemo and useCallback
 
 What They Memoize: The key difference lies in what they are used for memoizing. useMemo is for memoizing values resulting from a function, while useCallback is for memoizing the function itself.
 
