@@ -14,10 +14,9 @@ Suppose you want to find the longest substring without repeating characters. Her
 function longestUniqueSubstr(s) {
   let windowChars = new Set();
   let left = 0;
-  let right = 0;
   let maxLen = 0;
 
-  while (right < s.length) {
+  for (let right = 0; right < s.length; right++) {
     let c = s[right];
     // Move right pointer and update the window until a repeat character is found
     while (windowChars.has(c)) {
@@ -26,10 +25,27 @@ function longestUniqueSubstr(s) {
     }
     windowChars.add(c);
     maxLen = Math.max(maxLen, right - left + 1);
-    right++;
   }
 
   return maxLen;
+}
+```
+
+## Flexible Size Sliding Window Template - Longest
+
+```js
+function slidingWindowFlexibleLongest(input) {
+    initialize window, ans
+    let left = 0;
+    for (let right = 0; right < input.length; right++) {
+        append input[right] to window
+        while (invalid(window)) {     // update left until window is valid again
+            remove input[left] from window
+            ++left;
+        }
+        ans = max(ans, window);       // window is guaranteed to be valid here
+    }
+    return ans;
 }
 ```
 
@@ -54,8 +70,8 @@ function findAnagrams(original, check) {
   }
 
   let left = 0;
-  let right = 0; // Sliding window pointers
-  while (right < originalLen) {
+  // Sliding window pointers
+  for (let right = 0; right < originalLen; right++) {
     let char = original[right];
     windowMap.set(char, (windowMap.get(char) || 0) + 1);
     // If the window size matches 'check' length, start checking for anagram
@@ -72,7 +88,6 @@ function findAnagrams(original, check) {
       }
       left++; // Slide the window to the right
     }
-    right++;
   }
 
   return result;
@@ -93,8 +108,8 @@ There is anther methods using String.charCodeAt()
 
 ```js
 function findAnagrams(original: string, check: string): number[] {
-  const originalLen = original.length,
-    checkLen = check.length;
+  const originalLen = original.length;
+  const checkLen = check.length;
 
   if (originalLen < checkLen) return [];
 
