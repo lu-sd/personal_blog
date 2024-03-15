@@ -51,6 +51,27 @@ function subarraySum(arr, target) {
 
   return [-1, -1]; // Return -1, -1 if no subarray found
 }
+
+function subarraySum(arr, target) {
+  let prefixSum = 0;
+  let hashMap = new Map(); // Stores prefix sums and their corresponding indices
+  hashMap.set(0, -1); // Initialize with sum 0 at index -1 to handle the case where the subarray starts from index 0
+
+  for (let i = 0; i < arr.length; i++) {
+    prefixSum += arr[i]; // Update the running total (prefix sum)
+    // Check if the current prefix sum minus the target exists in the map
+    if (hashMap.has(prefixSum - target)) {
+      // If it does, a subarray summing to target has been found
+      return [hashMap.get(prefixSum - target) + 1, i]; // Return the indices of the subarray
+    }
+    // If not, add the current prefix sum and its index to the map
+    if (!hashMap.has(prefixSum)) {
+      hashMap.set(prefixSum, i);
+    }
+  }
+
+  return [-1, -1]; // If no subarray is found, return [-1, -1]
+}
 ```
 
 if return the total number of subarrays that sums up to target.
@@ -96,6 +117,29 @@ Simplicity: The logic is generally straightforward and involves expanding and sh
 Finding the longest/shortest subarray with a sum equal to or greater/less than a given value.
 
 Problems requiring the checking of every contiguous subarray for a condition, such as maximum sum or specific character frequency in a string.
+
+You can also sliding window to solve above problem
+
+```js
+function subarraySum(arr, target) {
+  let l = 0;
+  let sum = 0;
+  for (let r = 0; r < arr.length; r++) {
+    sum += arr[r];
+
+    while (sum > target && l <= r) {
+      sum -= arr[l];
+      l++;
+    }
+
+    if (sum === target) {
+      return [l, r + 1];
+    }
+  }
+
+  return [-1, -1];
+}
+```
 
 ## Choosing Between Them
 
