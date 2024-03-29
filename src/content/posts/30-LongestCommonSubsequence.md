@@ -6,7 +6,7 @@ slug: "30-LongestCommonSubsequence"
 isPublish: true
 ---
 
-One using memoization (top-down approach) and the other using dynamic programming (bottom-up approach).
+One using memoization (top-down approach) and the other using dynamic programming (bottom-up approach).I prefer the DP method.
 
 ```js
 function longestCommonSubsequence(text1: string, text2: string): number {
