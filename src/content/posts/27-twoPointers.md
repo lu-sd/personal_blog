@@ -1,5 +1,5 @@
 ---
-title: "Two Pointers-283,11,2461"
+title: "Two Pointers-283,11,2461,209"
 publishedAt: 2024-02-19
 description: "can convert O(n**2) to O(n)"
 slug: "27-twoPointers"
@@ -79,6 +79,8 @@ function maxArea(height: number[]): number {
 The sliding window technique combined with two pointers is a powerful approach for solving problems related to substrings or subarrays, especially when you're dealing with questions that ask for the longest/shortest substring, maximum/minimum sum subarray, or similar constraints within a contiguous block of elements in an array or string.
 
 The essence of the sliding window technique is to maintain a window that satisfies the problem's condition and then slide the window to explore other possibilities. The two pointers typically represent the start and end of the window, and they move according to the problem's requirements, often in one direction but sometimes in opposite directions within the same loop.
+
+### Fixed Fize Window
 
 Given an array (list) nums consisted of only non-negative integers, find the largest sum among all subarrays of length k in nums.
 
@@ -160,4 +162,75 @@ function maximumSubarraySum(nums: number[], k: number): number {
 To adhere to the condition that all elements in the subarray must be distinct, you will need to add a mechanism to check for the uniqueness of elements within each subarray of length k. Here's how you can modify the function to meet the problem's requirements:
 
 Sliding Window with Uniqueness Check: Use a sliding window to consider each subarray of length k, and within that window, verify if all elements are distinct.
+
 Set or Hash Map for Tracking Uniqueness: Utilize a Set (or Hash Map) to track the elements in the current window. A Set naturally ensures that all its elements are unique.
+
+### Flexible Size Sliding Window Template - Longest
+
+```js
+function slidingWindowFlexibleLongest(input) {
+    initialize window, ans
+
+    let left = 0;
+
+    for (let right = 0; right < input.length; right++) {
+        append input[right] to window
+        while (invalid(window)) {// update left until window is valid again
+            remove input[left] from window
+            ++left;
+        }
+        ans = max(ans, window);// window is guaranteed to be valid here
+    }
+    return ans;
+}
+```
+
+3:
+
+### Flexible Size Sliding Window Template - shortest
+
+```js
+function slidingWindowFlexibleShortest(input) {
+    initialize window, ans
+
+    let left = 0;
+
+    for (let right = 0; right < input.length; ++right) {
+        append input[right] to window
+        while (valid(window)) {
+            ans = min(ans, window);   // window is guaranteed to be valid here
+            remove input[left] from window
+            ++left;
+        }
+    }
+    return ans;
+}
+
+```
+
+209: Minimum Size Subarray Sum
+Given an array of positive integers nums and a positive integer target, return the minimal length of a subarray whose sum is greater than or equal to target. If there is no such subarray, return 0 instead.
+
+Input: target = 7, nums = [2,3,1,2,4,3]
+Output: 2
+Explanation: The subarray [4,3] has the minimal length under the problem constraint.
+
+```js
+function minSubArrayLen(target: number, nums: number[]): number {
+  let l = 0;
+  let ans = Infinity;
+  let sum = 0;
+
+  for (let r = 0; r < nums.length; r++) {
+    sum += nums[r];
+
+    while (sum >= target) {
+      ans = Math.min(ans, r - l + 1);
+      sum -= nums[l];
+      l++;
+    }
+  }
+
+  return ans === Infinity ? 0 : ans;
+}
+```
