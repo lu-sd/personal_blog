@@ -29,30 +29,6 @@ Output: [1, 4]
 
 ```js
 function subarraySum(arr, target) {
-  let prefixSums = new Map(); // To store cumulative sum and corresponding index
-  let curSum = 0; // Initialize current sum to 0
-
-  // Add a base case to handle sum from the start
-  prefixSums.set(0, 0);
-
-  for (let i = 0; i < arr.length; i++) {
-    curSum += arr[i]; // Update current sum
-
-    // Check if the current sum minus the target exists in the map
-    if (prefixSums.has(curSum - target)) {
-      return [prefixSums.get(curSum - target), i + 1]; // Return start and end indices
-    }
-
-    // Store current sum with its index if not already stored
-    if (!prefixSums.has(curSum)) {
-      prefixSums.set(curSum, i + 1);
-    }
-  }
-
-  return [-1, -1]; // Return -1, -1 if no subarray found
-}
-
-function subarraySum(arr, target) {
   let prefixSum = 0;
   let hashMap = new Map(); // Stores prefix sums and their corresponding indices
   hashMap.set(0, -1); // Initialize with sum 0 at index -1 to handle the case where the subarray starts from index 0
@@ -62,10 +38,10 @@ function subarraySum(arr, target) {
     // Check if the current prefix sum minus the target exists in the map
     if (hashMap.has(prefixSum - target)) {
       // If it does, a subarray summing to target has been found
-      return [hashMap.get(prefixSum - target) + 1, i]; // Return the indices of the subarray
+      return [hashMap.get(prefixSum - target) + 1, i + 1]; // Return the indices of the subarray
     }
     // If not, add the current prefix sum and its index to the map
-    if (!hashMap.has(prefixSum)) {
+    else {
       hashMap.set(prefixSum, i);
     }
   }
@@ -88,14 +64,11 @@ function subarraySumTotal(arr, target) {
   for (let i = 0; i < arr.length; i++) {
     curSum += arr[i]; // Update current sum
 
-    // If there's a previous prefix sum that, when added to the target, equals the current sum,
-    // it means there are subarrays that sum to the target.
     if (prefixSums.has(curSum - target)) {
       count += prefixSums.get(curSum - target); // Add the number of those subarrays to count
+    } else {
+      prefixSums.set(curSum, (prefixSums.get(curSum) || 0) + 1);
     }
-
-    // Update the map with the current sum's new count (increment or initialize to 1)
-    prefixSums.set(curSum, (prefixSums.get(curSum) || 0) + 1);
   }
 
   return count; // Return the total count of subarrays summing to target
@@ -118,30 +91,7 @@ Finding the longest/shortest subarray with a sum equal to or greater/less than a
 
 Problems requiring the checking of every contiguous subarray for a condition, such as maximum sum or specific character frequency in a string.
 
-You can also sliding window to solve above problem
-
-```js
-function subarraySum(arr, target) {
-  let l = 0;
-  let sum = 0;
-  for (let r = 0; r < arr.length; r++) {
-    sum += arr[r];
-
-    while (sum > target && l <= r) {
-      sum -= arr[l];
-      l++;
-    }
-
-    if (sum === target) {
-      return [l, r + 1];
-    }
-  }
-
-  return [-1, -1];
-}
-```
-
-## Choosing Between Them
+# Choosing Between Them
 
 Prefix Sum is more suited for static arrays where the sum of ranges is frequently queried, or when dealing with finding exact sums in arrays that include negative numbers.
 
