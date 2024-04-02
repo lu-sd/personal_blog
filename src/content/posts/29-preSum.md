@@ -36,9 +36,10 @@ function subarraySum(arr, target) {
   for (let i = 0; i < arr.length; i++) {
     prefixSum += arr[i]; // Update the running total (prefix sum)
     // Check if the current prefix sum minus the target exists in the map
-    if (hashMap.has(prefixSum - target)) {
+    const diff = prefixSum - target;
+    if (hashMap.has(diff)) {
       // If it does, a subarray summing to target has been found
-      return [hashMap.get(prefixSum - target) + 1, i + 1]; // Return the indices of the subarray
+      return [hashMap.get(diff) + 1, i + 1]; // Return the indices of the subarray
     }
     // If not, add the current prefix sum and its index to the map
     else {
@@ -54,21 +55,22 @@ if return the total number of subarrays that sums up to target.
 
 ```js
 function subarraySumTotal(arr, target) {
-  let prefixSums = new Map();
-  let curSum = 0;
+  let hashMap = new Map();
+  let prefixSum = 0;
   let count = 0; // Initialize counter for subarrays summing to target
 
   // Add a base case to handle sum from the start
-  prefixSums.set(0, 1); // There's one way to have a sum of 0 (with no elements)
+  hashMap.set(0, 1); // There's one way to have a sum of 0 (with no elements)
 
   for (let i = 0; i < arr.length; i++) {
-    curSum += arr[i]; // Update current sum
+    prefixSum += arr[i]; // Update current sum
+    const diff = curSum - target;
 
-    if (prefixSums.has(curSum - target)) {
-      count += prefixSums.get(curSum - target); // Add the number of those subarrays to count
-    } else {
-      prefixSums.set(curSum, (prefixSums.get(curSum) || 0) + 1);
+    if (hashMap.has(diff)) {
+      count += hashMap.get(diff); // Add the number of those subarrays to count
     }
+
+    hashMap.set(prefixSum, (hashMap.get(prefixSum) || 0) + 1);
   }
 
   return count; // Return the total count of subarrays summing to target
