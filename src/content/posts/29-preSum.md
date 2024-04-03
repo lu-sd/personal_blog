@@ -1,5 +1,5 @@
 ---
-title: "Use prefix sum to deal with sums related within an array."
+title: "Use prefix sum to deal with sums related within an array-523"
 publishedAt: 2024-02-22
 description: "prefix Sum VS sliding widows"
 slug: "preSum"
@@ -100,3 +100,32 @@ Prefix Sum is more suited for static arrays where the sum of ranges is frequentl
 Sliding Window is ideal for finding subarrays that satisfy certain conditions based on sums or other criteria, particularly when the array consists of positive numbers, or the problem involves optimizing for the length of the subarray (e.g., finding the smallest subarray with a sum greater than a given value).
 
 Both strategies are fundamental in algorithm design and problem-solving in coding interviews and competitive programming, offering efficient solutions for a variety of complex problems.
+
+523:Given an integer array nums and an integer k, return true if nums has a good subarray or false otherwise.
+
+A good subarray is a subarray where:
+
+- its length is at least two, and
+- the sum of the elements of the subarray is a multiple of k.
+
+```js
+function checkSubarraySum(nums: number[], k: number): boolean {
+  const map = new Map([[0, -1]]);
+  let sum = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    sum += nums[i];
+    let rem = sum % k;
+
+    if (map.has(rem)) {
+      if (i - map.get(rem) > 1) {
+        return true;
+      }
+    } else {
+      map.set(rem, i);
+    }
+  }
+
+  return false;
+}
+```
