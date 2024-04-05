@@ -1,5 +1,5 @@
 ---
-title: "Use DFS on Graph-733,200"
+title: "Use DFS on Graph-733,200,695"
 publishedAt: 2024-02-14
 description: "dfs pay more atttention on visited node"
 slug: "24-dfsInGraph"
@@ -55,8 +55,6 @@ function numIslands(grid: string[][]): number {
     [1, 0],
   ];
 
-  let res = 0;
-
   function dfs(r: number, c: number) {
     if (r < 0 || r >= m || c < 0 || c >= n) return;
     if (grid[r][c] === "0") return;
@@ -67,6 +65,8 @@ function numIslands(grid: string[][]): number {
     }
   }
 
+  let res = 0;
+
   for (let i = 0; i < m; i++) {
     for (let j = 0; j < n; j++) {
       if (grid[i][j] === "1") {
@@ -75,6 +75,45 @@ function numIslands(grid: string[][]): number {
       }
     }
   }
+  return res;
+}
+```
+
+695:Max Area of Island
+
+```js
+function maxAreaOfIsland(grid: number[][]): number {
+  const m = grid.length;
+  const n = grid[0].length;
+  const dir = [
+    [0, 1],
+    [0, -1],
+    [1, 0],
+    [-1, 0],
+  ];
+
+  function dfs(r: number, c: number): number {
+    if (r < 0 || r >= m || c < 0 || c >= n) return 0;
+    if (grid[r][c] === 0) return 0;
+
+    grid[r][c] = 0;
+    let ans = 1;
+    for (const [x, y] of dir) {
+      ans += dfs(x + r, y + c);
+    }
+
+    return ans;
+  }
+
+  let res = 0;
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      if (grid[i][j] === 1) {
+        res = Math.max(res, dfs(i, j));
+      }
+    }
+  }
+
   return res;
 }
 ```
