@@ -1,5 +1,5 @@
 ---
-title: "Template for finding shortest steps to exit in maze"
+title: "Template for finding shortest steps to exit in maze-1926"
 publishedAt: 2024-02-09
 description: "BFS may be the best way"
 slug: "22-mazeShortestSteps"
