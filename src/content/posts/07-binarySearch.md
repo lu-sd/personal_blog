@@ -1,5 +1,5 @@
 ---
-title: "Algorithm-34,540"
+title: "Algorithm-34,540,729"
 publishedAt: 2023-11-28
 description: "only can ben used in sorted array"
 slug: "07-binarySearch"
@@ -143,5 +143,53 @@ function singleNonDuplicate(nums: number[]): number {
   }
 
   return nums[ans];
+}
+```
+
+729:My Calendar
+You are implementing a program to use as your calendar. We can add a new event if adding the event will not cause a double booking.
+
+A double booking happens when two events have some non-empty intersection (i.e., some moment is common to both events.).
+
+The event can be represented as a pair of integers start and end that represents a booking on the half-open interval [start, end), the range of real numbers x such that start <= x < end.
+
+Input
+["MyCalendar", "book", "book", "book"]
+[[], [10, 20], [15, 25], [20, 30]]
+
+Output
+[null, true, false, true]
+
+```js
+class MyCalendar {
+  calendar: number[][];
+  constructor() {
+    this.calendar = [];
+  }
+
+  book(start: number, end: number): boolean {
+    let l = 0;
+    let r = this.calendar.length - 1;
+    let idx = this.calendar.length;
+    while (l <= r) {
+      const mid = Math.floor((l + r) / 2);
+      if (this.calendar[mid][0] > start) {
+        idx = mid;
+        r = mid - 1;
+      } else {
+        l = mid + 1;
+      }
+    }
+
+    if (
+      (idx > 0 && this.calendar[idx - 1][1] > start) ||
+      (idx < this.calendar.length && this.calendar[idx][0] < end)
+    ) {
+      return false;
+    }
+
+    this.calendar.splice(idx, 0, [start, end]);
+    return true;
+  }
 }
 ```
