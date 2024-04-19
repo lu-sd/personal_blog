@@ -1,5 +1,5 @@
 ---
-title: "Algorithm-257,46"
+title: "Algorithm-257,46,112,113"
 publishedAt: 2024-01-18
 description: "Backtracking with additional states "
 slug: "13-backtracking"
@@ -68,6 +68,52 @@ function dfs(root, path, res) {
 function ternaryTreePaths(root) {
   let res = [];
   if (root) dfs(root, [], res);
+  return res;
+}
+```
+
+112:Given the root of a binary tree and an integer targetSum, return true if the tree has a root-to-leaf path such that adding up all the values along the path equals targetSum.
+
+A leaf is a node with no children.
+
+```js
+function hasPathSum(root: TreeNode | null, targetSum: number): boolean {
+  function dfs(node: TreeNode | null, sum: number) {
+    if (!node) return false;
+
+    sum += node.val;
+
+    if (node.left === null && node.right === null && sum === targetSum)
+      return true;
+
+    return dfs(node.left, sum) || dfs(node.right, sum);
+  }
+  return dfs(root, 0);
+}
+```
+
+113:Given the root of a binary tree and an integer targetSum, return all root-to-leaf paths where the sum of the node values in the path equals targetSum. Each path should be returned as a list of the node values, not node references.
+
+A root-to-leaf path is a path starting from the root and ending at any leaf node. A leaf is a node with no children.
+
+```js
+function pathSum(root: TreeNode | null, targetSum: number): number[][] {
+  const res: number[][] = [];
+  const path = [];
+
+  function dfs(node: TreeNode | null, sum: number) {
+    if (!node) return;
+    path.push(node.val);
+    sum += node.val;
+    if (!node.left && !node.right && sum === targetSum) {
+      res.push([...path]);
+    }
+
+    dfs(node.left, sum);
+    dfs(node.right, sum);
+    path.pop();
+  }
+  dfs(root, 0);
   return res;
 }
 ```
