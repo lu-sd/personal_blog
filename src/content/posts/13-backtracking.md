@@ -1,5 +1,5 @@
 ---
-title: "Algorithm-257,46,112,113"
+title: "Algorithm-257,46,112,113,437,139"
 publishedAt: 2024-01-18
 description: "Backtracking with additional states "
 slug: "13-backtracking"
@@ -118,6 +118,36 @@ function pathSum(root: TreeNode | null, targetSum: number): number[][] {
 }
 ```
 
+437:Given the root of a binary tree and an integer targetSum, return the number of paths where the sum of the values along the path equals targetSum.
+
+The path does not need to start or end at the root or a leaf, but it must go downwards (i.e., traveling only from parent nodes to child nodes).
+
+```js
+function pathSum(root: TreeNode | null, targetSum: number): number {
+  let ans = 0;
+
+  function dfs(node: TreeNode | null, sum: number) {
+    if (!node) return;
+    sum += node.val;
+    if (sum === targetSum) {
+      ans++;
+    }
+    dfs(node.left, sum);
+    dfs(node.right, sum);
+  }
+
+  function traverseAndStartDFS(node: TreeNode | null) {
+    if (!node) return;
+    dfs(node, 0); // Start a new DFS to count paths for each node
+    traverseAndStartDFS(node.left);
+    traverseAndStartDFS(node.right);
+  }
+
+  traverseAndStartDFS(root); // Start traversal from the root
+  return ans;
+}
+```
+
 Given a non-negative integer n, find all n-letter words composed by 'a' and 'b', return them in a list of strings in lexicographical order.
 
 ```js
@@ -218,7 +248,7 @@ function dfs(startIndex, target) {
 }
 ```
 
-Given a string and a list of words, determine if the string can be constructed from concatenating words from the list of words. A word can be used multiple times.
+139:Given a string and a list of words, determine if the string can be constructed from concatenating words from the list of words. A word can be used multiple times.
 
 Input:
 
