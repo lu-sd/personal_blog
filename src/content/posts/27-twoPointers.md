@@ -1,5 +1,5 @@
 ---
-title: "Two Pointers-283,11,2461,209"
+title: "Two Pointers-283,239,11,2461,209"
 publishedAt: 2024-02-19
 description: "can convert O(n**2) to O(n)"
 slug: "27-twoPointers"
@@ -40,6 +40,34 @@ function moveZeroes(nums: number[]): void {
   while (l < nums.length) {
     nums[l++] = 0;
   }
+}
+```
+
+239:Sliding Window Maximum
+
+You are given an array of integers nums, there is a sliding window of size k which is moving from the very left of the array to the very right. You can only see the k numbers in the window. Each time the sliding window moves right by one position.
+
+Return the max sliding window.
+
+```js
+function maxSlidingWindow(nums: number[], k: number): number[] {
+  const stack = [];
+  const res = [];
+  let j = 0;
+  for (let i = 0; i < nums.length; i++) {
+    const item = nums[i];
+    while (stack.length > j && item > stack[stack.length - 1]) {
+      stack.pop();
+    }
+    stack.push(item);
+    if (i >= k - 1) {
+      res.push(stack[j]);
+      if (nums[i - k + 1] === stack[j]) {
+        j++;
+      }
+    }
+  }
+  return res;
 }
 ```
 
