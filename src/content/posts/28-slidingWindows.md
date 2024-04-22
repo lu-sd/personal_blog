@@ -138,3 +138,42 @@ function equals(arr1: number[], arr2: number[]) {
 ```
 
 Both checkCounter and window are arrays that likely have a length of 26, assuming the task is limited to lowercase alphabetic characters. Each index in these arrays corresponds to a letter in the alphabet ('a' to 'z'), with the index determined by subtracting the char code of 'a' from the char code of the character in question. This effectively maps 'a' to index 0, 'b' to index 1, ..., 'z' to index 25.
+
+159:
+Given a string s, return the length of the longest substring that contains at most two distinct characters.
+
+Input: s = "ccaabbb"
+Output: 5
+Explanation: The substring is "aabbb" which its length is 5.
+
+```js
+function lengthOfLongestSubstringTwoDistinct(s: string): number {
+    // This will store the counts of characters within the current window
+    let map = new Map<string, number>();
+
+    let left: number = 0;
+    let maxLen: number = 0;
+
+    for (let right = 0; right < s.length; right++) {
+        const rightChar = s[right];
+        map.set(rightChar, (map.get(rightChar) || 0) + 1);
+
+        // When we have more than two distinct characters
+        while (map.size > 2) {
+            const leftChar = s[left];
+            const count = map.get(leftChar);
+            if (count === 1) {
+                map.delete(leftChar);
+            } else {
+                map.set(leftChar, count - 1);
+            }
+            left++;
+        }
+
+        // Calculate the max length of the window
+        maxLen = Math.max(maxLen, right - left + 1);
+    }
+
+    return maxLen;
+};
+```
