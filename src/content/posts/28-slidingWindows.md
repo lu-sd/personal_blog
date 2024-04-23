@@ -1,7 +1,7 @@
 ---
-title: "Using Map or Set in Sliding Window Algorithm-3,438"
+title: "sliding Window Algorithm-3,438,239,159"
 publishedAt: 2024-02-21
-description: "can convert O(n**2) to O(n)"
+description: "make use of  map,set and stack"
 slug: "28-slidingWindows"
 isPublish: true
 ---
@@ -176,4 +176,33 @@ function lengthOfLongestSubstringTwoDistinct(s: string): number {
 
     return maxLen;
 };
+```
+
+239:You are given an array of integers nums, there is a sliding window of size k which is moving from the very left of the array to the very right. You can only see the k numbers in the window. Each time the sliding window moves right by one position.
+
+Return the max sliding window.
+
+Input: nums = [1,3,-1,-3,5,3,6,7], k = 3
+Output: [3,3,5,5,6,7]
+
+```js
+function maxSlidingWindow(nums: number[], k: number): number[] {
+  const stack = [];
+  const res = [];
+  let j = 0;
+  for (let i = 0; i < nums.length; i++) {
+    const item = nums[i];
+    while (stack.length > j && item > stack[stack.length - 1]) {
+      stack.pop();
+    }
+    stack.push(item);
+    if (i >= k - 1) {
+      res.push(stack[j]);
+      if (nums[i - k + 1] === stack[j]) {
+        j++;
+      }
+    }
+  }
+  return res;
+}
 ```
