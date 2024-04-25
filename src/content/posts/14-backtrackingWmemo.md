@@ -56,3 +56,56 @@ function coinChange(coins: number[], amount: number): number {
   return res === Infinity ? -1 : res;
 }
 ```
+
+139: Word Break
+
+Given a string s and a dictionary of strings wordDict, return true if s can be segmented into a space-separated sequence of one or more dictionary words.
+
+Note that the same word in the dictionary may be reused multiple times in the segmentation.
+
+```js
+function wordBreak(s: string, wordDict: string[]): boolean {
+    const set = new Set(wordDict)
+    const memo = new Map<number, boolean>()
+
+    function dfs(start: number) {
+        if (start === s.length) return true
+
+        if (memo.has(start)) return memo.get(start)
+
+        for (let i = start; i < s.length; i++) {
+            const pre = s.slice(start, i + 1)
+            if (set.has(pre)) {
+                if (dfs(i + 1)) {
+                    memo.set(start, true)
+                    return true
+                }
+            }
+        }
+        memo.set(start,false)
+        return false
+    }
+
+    return dfs(0)
+};
+
+function wordBreak(s: string, wordDict: string[]): boolean {
+    let ans = false
+    const memo = new Map()
+    function dfs(start: number){
+        if(start === s.length) return true
+        if(start > s.length) return false
+        if(memo.has(start)) return memo.get(start)
+        for(const item of wordDict){
+            if(s.slice(start).startsWith(item)){
+                ans = ans ||dfs(start + item.length)
+            }
+        }
+        memo.set(start,ans)
+        return ans
+    }
+
+    dfs(0)
+    return ans
+};
+```
