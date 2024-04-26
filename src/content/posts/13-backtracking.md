@@ -1,5 +1,5 @@
 ---
-title: "Algorithm-257,46,112,113,437,139"
+title: "Algorithm-257,988,112,113,437,139,46"
 publishedAt: 2024-01-18
 description: "Backtracking with additional states "
 slug: "13-backtracking"
@@ -8,31 +8,57 @@ isPublish: true
 
 ## Basic Backing
 
+### Template 1
+
+```js
+let res: number[][] = [];
+let path: number[] = [];
+
+// General path:
+function dfs(root: TreeNode | null): void {
+  if (!root) return; // If the root is null, return immediately
+
+  path.push(root.val);
+
+  if (!root.left && !root.right) {
+    // If it's a leaf node
+    res.push([...path]); // Push a copy of the path to results
+    // no return!;
+  }
+
+  dfs(root.left);
+  dfs(root.right);
+
+  path.pop();
+}
+```
+
+Why no return?
+
+Path State Management: In your DFS function, you push to the path array and recursively call the DFS for the left and right children. After exploring both children, you need to ensure that the state of the path is correctly managed by popping the last element after the recursive calls. This is necessary to backtrack correctly when you return from a leaf to a parent node and move to another subtree. You've already added the path.pop() call after both recursive calls, which is correct.
+
 257: Give all paths of a Binary tree,form root to leaf in any order
 
 ```js
-function binaryTreePaths(root) {
-  let res = [];
+function binaryTreePaths(root: TreeNode | null): string[] {
+  const res: string[] = [];
 
-  function dfs(root, path) {
+  function dfs(root: TreeNode | null, path: number[]): void {
+    if (!root) return;
+
+    path.push(root.val);
+
     if (!root.left && !root.right) {
-      path.push(root.val);
-      const curr = path.join("->");
-      res.push(curr);
-      path.pop();
-      return;
+      // If it's a leaf node
+      res.push(path.join("->")); // Push a copy of the path to results
     }
-    for (const node of [root.right, root.left]) {
-      if (node) {
-        path.push(node.val);
-        dfs(node, path);
-        path.pop();
-      }
-    }
+
+    dfs(root.left, path); // Continue recursion on the left child
+    dfs(root.right, path); // Continue recursion on the right child
+    path.pop();
   }
-  if (root) {
-    dfs(root, []);
-  }
+
+  dfs(root, []);
   return res;
 }
 ```
@@ -72,6 +98,68 @@ function ternaryTreePaths(root) {
 }
 ```
 
+988.Smallest String Starting From Leaf
+
+You are given the root of a binary tree where each node has a value in the range [0, 25] representing the letters 'a' to 'z'.
+
+Return the lexicographically smallest string that starts at a leaf of this tree and ends at the root.
+
+As a reminder, any shorter prefix of a string is lexicographically smaller.
+
+For example, "ab" is lexicographically smaller than "aba".
+A leaf of a node is a node that has no children.
+
+```js
+function smallestFromLeaf(root: TreeNode | null): string {
+  let smallestString: string = "~"; // Using '~' because it's after 'z' in ASCII table
+
+  function dfs(node: TreeNode, currentString: string) {
+    if (!node) return;
+    // Convert node's value to corresponding character
+    // const char = String.fromCharCode('a'.charCodeAt(0) + node.val);
+    const char = String.fromCharCode(97 + node.val);
+
+    // Update the current path by prepending current node's char (building string leaf to root)
+    currentString = char + currentString;
+
+    // If it's a leaf node
+    if (!node.left && !node.right) {
+      // If the current path is smaller than the smallest recorded, update smallestString
+      if (currentString < smallestString) {
+        smallestString = currentString;
+      }
+    }
+
+    // Recursively visit left and right children
+    if (node.left) dfs(node.left, currentString);
+    if (node.right) dfs(node.right, currentString);
+  }
+
+  dfs(root, "");
+  return smallestString;
+}
+```
+
+### Template 2
+
+```js
+// Path with a given sum:
+function dfsWithSum(root: TreeNode | null, sum: number): void {
+  if (!root) return;
+
+  sum += root.val;
+  path.push(root.val);
+
+  if (!root.left && !root.right && sum === targetSum) {
+    res.push([...path]);
+  }
+
+  dfsWithSum(root.left, sum);
+  dfsWithSum(root.right, sum);
+  path.pop();
+}
+```
+
 112:Given the root of a binary tree and an integer targetSum, return true if the tree has a root-to-leaf path such that adding up all the values along the path equals targetSum.
 
 A leaf is a node with no children.
@@ -103,8 +191,10 @@ function pathSum(root: TreeNode | null, targetSum: number): number[][] {
 
   function dfs(node: TreeNode | null, sum: number) {
     if (!node) return;
+
     path.push(node.val);
     sum += node.val;
+
     if (!node.left && !node.right && sum === targetSum) {
       res.push([...path]);
     }
