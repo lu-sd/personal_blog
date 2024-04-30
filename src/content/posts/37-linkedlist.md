@@ -52,3 +52,24 @@ function deleteDuplicates(head: ListNode | null): ListNode | null {
   return head;
 }
 ```
+
+19:Remove Nth Node From End of List
+
+```js
+function removeNthFromEnd(head: ListNode | null, n: number): ListNode | null {
+  const dummy = new ListNode(0, head);
+  let s = dummy;
+  let f = dummy;
+  while (n > 0) {
+    f = f.next;
+    n--;
+  }
+  while (f.next) {
+    f = f.next;
+    s = s.next;
+  }
+
+  s.next = s.next.next;
+  return dummy.next;
+}
+```
