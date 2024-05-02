@@ -348,27 +348,48 @@ words = ["algo", "monster"]
 Output: true
 
 ```js
-function wordBreak(s, words) {
-  const memo = {};
+function wordBreak(s: string, wordDict: string[]): boolean {
+    const set = new Set(wordDict)
+    const memo = new Map<number, boolean>()
 
-  function dfs(startIndex) {
-    if (startIndex === s.length) return true;
-
-    if (startIndex in memo) return memo[startIndex];
-
-    let ans = false;
-    for (const word of words) {
-      if (s.slice(startIndex).startsWith(word)) {
-        if (dfs(startIndex + word.length)) {
-          ans = true;
-          break;
+    function dfs(start: number) {
+        if (start === s.length) return true
+        if (memo.has(start)) return memo.get(start)
+        for (let i = start; i < s.length; i++) {
+            const pre = s.slice(start, i + 1)
+            if (set.has(pre)) {
+                if (dfs(i + 1)) {
+                    memo.set(start, true)
+                    return true
+                }
+            }
         }
-      }
+        memo.set(start,false)
+        return false
     }
-    memo[startIndex] = ans;
-    return ans;
-  }
 
-  return dfs(0);
-}
+    return dfs(0)
+};
+
+function wordBreak(s: string, wordDict: string[]): boolean {
+    const memo = new Map()
+
+    function dfs(start: number) {
+        if(start === s.length) return true
+        if(start > s.length) return false
+        if(memo.has(start)) return memo.get(start)
+
+        let ans = false
+        for (const item of wordDict) {
+            if (s.slice(start).startsWith(item)) {
+                ans = ans || dfs(start + item.length)
+            }
+        }
+        memo.set(start,ans)
+        return ans
+    }
+
+    return dfs(0)
+
+};
 ```
