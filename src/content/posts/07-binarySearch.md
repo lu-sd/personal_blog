@@ -1,5 +1,5 @@
 ---
-title: "Algorithm-34,540,729"
+title: "Algorithm-34,540,729,852"
 publishedAt: 2023-11-28
 description: "only can ben used in sorted array"
 slug: "07-binarySearch"
@@ -191,5 +191,29 @@ class MyCalendar {
     this.calendar.splice(idx, 0, [start, end]);
     return true;
   }
+}
+```
+
+852:Peak Index in a Mountain Array
+
+Input: arr = [0,10,5,2]
+Output: 1
+
+```js
+function peakIndexInMountainArray(arr: number[]): number {
+  let l = 0;
+  let r = arr.length - 1;
+  let idx = -1;
+
+  while (l <= r) {
+    const mid = Math.floor((l + r) / 2);
+    if (mid === arr.length - 1 || arr[mid] > arr[mid + 1]) {
+      idx = mid;
+      r = mid - 1;
+    } else {
+      l = mid + 1;
+    }
+  }
+  return idx;
 }
 ```
