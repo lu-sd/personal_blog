@@ -1,30 +1,30 @@
 ---
-title: " Classic algo on linked list-82,83,19,206,92,25"
+title: " Classic algo on linked list-203,82,83,19,206,92,25"
 publishedAt: 2024-04-27
 description: "linked list"
 slug: "37-linkedlist"
 isPublish: true
 ---
 
-82:Given the head of a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list. Return the linked list sorted as well.
+203:Remove Linked List Elements
+Given the head of a linked list and an integer val, remove all the nodes of the linked list that has Node.val == val, and return the new head.
 
-Input: head = [1,1,1,2,3]
-Output: [2,3]
+Input: head = [1,2,6,3,4,5,6], val = 6
+Output: [1,2,3,4,5]
 
 ```js
-function deleteDuplicates(head: ListNode | null): ListNode | null {
+function removeElements(head: ListNode | null, val: number): ListNode | null {
   const dummy = new ListNode(0, head);
-  let cur = dummy;
+  let pre = dummy;
+  let cur = head;
 
-  while (cur.next && cur.next.next) {
-    const val = cur.next.val;
-    if (cur.next.next.val === val) {
-      while (cur.next && cur.next.val === val) {
-        cur.next = cur.next.next;
-      }
+  while (cur) {
+    if (cur.val === val) {
+      pre.next = cur.next;
     } else {
-      cur = cur.next;
+      pre = pre.next;
     }
+    cur = cur.next;
   }
   return dummy.next;
 }
@@ -37,19 +37,73 @@ Output: [1,2]
 
 ```js
 function deleteDuplicates(head: ListNode | null): ListNode | null {
-  if (head === null) return null;
-
+  const dummy = new ListNode(0, head);
+  let pre = dummy;
   let cur = head;
 
-  while (cur.next) {
-    if (cur.val === cur.next.val) {
-      cur.next = cur.next.next;
+  while (cur) {
+    if (cur.next && cur.val === cur.next.val) {
+      pre.next = cur.next;
     } else {
-      cur = cur.next;
+      pre = pre.next;
     }
+    cur = cur.next;
   }
 
-  return head;
+  return dummy.next;
+}
+```
+
+If the linked list is not sorted, we can use a set
+
+```js
+function deleteDuplicates(head: ListNode | null): ListNode | null {
+     const dummy = new ListNode(0, head)
+     let pre = dummy
+     let cur = head
+     const record = new Set<number>()
+
+     while(cur){
+        if(record.has(cur.val)){
+            pre.next = cur.next
+        }else{
+            pre = pre.next
+            record.add(cur.val)
+        }
+        cur = cur.next
+     }
+    return dummy.next
+};
+```
+
+82:Given the head of a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list. Return the linked list sorted as well.
+
+Input: head = [1,1,1,2,3]
+Output: [2,3]
+
+```js
+function deleteDuplicates(head: ListNode | null): ListNode | null {
+  const dummy = new ListNode(0, head);
+  let prev = dummy; // `prev` is a safe guard for linking nodes that are not duplicates.
+  let cur = head;
+  while (cur) {
+    // Check if current node is a start of duplicates.
+    if (cur.next && cur.val === cur.next.val) {
+      // Skip all nodes with the same value.
+      while (cur.next && cur.val === cur.next.val) {
+        cur = cur.next;
+      }
+      // Link `prev.next` to the node after the last duplicate.
+      prev.next = cur.next;
+    } else {
+      // No duplicates, safely move `prev`.
+      prev = prev.next;
+    }
+    // Move `cur` forward.
+    cur = cur.next;
+  }
+
+  return dummy.next; // The head of the modified list.
 }
 ```
 
