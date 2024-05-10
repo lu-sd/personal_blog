@@ -1,5 +1,5 @@
 ---
-title: " Classic algo on linked list-203,82,83,19,206,92,25"
+title: " Classic algo on linked list-203,82,83,19,206,92,25,707"
 publishedAt: 2024-04-27
 description: "linked list"
 slug: "37-linkedlist"
@@ -233,5 +233,94 @@ function reverseKGroup(head: ListNode | null, k: number): ListNode | null {
   }
 
   return dummy.next; // Return the new head, skipping the dummy node
+}
+```
+
+707:Design a linked list
+
+```js
+class linkedNode {
+    val: number
+    next: linkedNode | null
+    constructor(val: number, next = null) {
+        this.val = val
+        this.next = next
+    }
+}
+class MyLinkedList {
+    head: linkedNode | null = null
+    tail: linkedNode | null = null
+    size = 0
+    constructor() {
+    }
+
+    private getNode(index:number){
+        if(index === this.size - 1) return this.tail
+        let cur = this.head
+        while(index--){
+            cur = cur.next
+        }
+        return cur
+    }
+
+    get(index: number): number {
+        if(index > this.size - 1) return -1
+        return this.getNode(index).val
+    }
+
+    addAtHead(val: number): void {
+        this.size++
+        const node = new linkedNode(val,this.head)
+        this.head = node
+        if(this.tail === null){
+            this.tail = node
+        }
+    }
+
+    addAtTail(val: number): void {
+        if(this.head === null){
+            this.addAtHead(val)
+            return
+        }
+        this.size++
+        const node = new linkedNode(val,null)
+        this.tail.next = node
+        this.tail = node
+    }
+
+    addAtIndex(index: number, val: number): void {
+        if(index > this.size) return
+        if(index === 0){
+            this.addAtHead(val)
+            return
+        }
+        if(index === this.size){
+            this.addAtTail(val)
+            return
+        }
+
+        const pre = this.getNode(index - 1)
+        const node = new linkedNode(val,pre.next)
+        pre.next = node
+        this.size++
+    }
+
+    deleteAtIndex(index: number): void {
+        if(index > this.size - 1) return
+        if(index === 0){
+            this.head = this.head.next
+            this.size--
+            if(this.size === 0){
+                this.tail = null
+            }
+            return
+        }
+        const pre = this.getNode(index - 1)
+        pre.next = pre.next.next
+        if(index === this.size - 1){
+            this.tail = pre
+        }
+        this.size--
+    }
 }
 ```
