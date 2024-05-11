@@ -310,7 +310,7 @@ class MyLinkedList {
         if(index === 0){
             this.head = this.head.next
             this.size--
-            if(this.size === 0){
+            if(this.head === null){
                 this.tail = null
             }
             return
