@@ -1,5 +1,5 @@
 ---
-title: "Algorithm on hash-01,349"
+title: "Algorithm on hash-01,349,232"
 publishedAt: 2023-11-27
 description: " use map,set,array to solve hash problems"
 slug: "06-hash"
@@ -81,5 +81,39 @@ function intersection(nums1: number[], nums2: number[]): number[] {
     }
   }
   return res;
+}
+```
+
+232:Implement queue with stacks
+
+```js
+class MyQueue {
+  stackIn: number[] = [];
+  stackOut: number[] = [];
+  constructor() {}
+
+  push(x: number): void {
+    this.stackIn.push(x);
+  }
+
+  pop(): number {
+    if (this.stackOut.length === 0) {
+      while (this.stackIn.length) {
+        this.stackOut.push(this.stackIn.pop());
+      }
+    }
+    const res = this.stackOut.pop();
+    return res;
+  }
+
+  peek(): number {
+    const res = this.pop();
+    this.stackOut.push(res);
+    return res;
+  }
+
+  empty(): boolean {
+    return this.stackOut.length === 0 && this.stackIn.length === 0;
+  }
 }
 ```
