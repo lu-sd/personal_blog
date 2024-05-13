@@ -1,5 +1,5 @@
 ---
-title: "Two Pointers-283,239,11,2461,209"
+title: "Two Pointers-283,239,11,543,2461,209"
 publishedAt: 2024-02-19
 description: "can convert O(n**2) to O(n)"
 slug: "27-twoPointers"
@@ -99,6 +99,37 @@ function maxArea(height: number[]): number {
   }
 
   return ans;
+}
+```
+
+543:Reverse String
+Given a string s and an integer k, reverse the first k characters for every 2k characters counting from the start of the string.
+
+If there are fewer than k characters left, reverse all of them. If there are less than 2k but greater than or equal to k characters, then reverse the first k characters and leave the other as original.
+
+Input: s = "abcdefg", k = 2
+Output: "bacdfeg"
+
+```js
+function reverseStr(s: string, k: number): string {
+  function reverse(s: string[], l: number, r: number) {
+    while (l < r) {
+      [s[l], s[r]] = [s[r], s[l]];
+      l++;
+      r--;
+    }
+  }
+
+  const sArr = s.split("");
+  const len = sArr.length;
+
+  for (let i = 0; i < len; i += 2 * k) {
+    let left = i;
+    let right = i + k <= len ? i + k - 1 : len - 1;
+    reverse(sArr, left, right);
+  }
+
+  return sArr.join("");
 }
 ```
 
