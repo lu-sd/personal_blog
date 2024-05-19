@@ -12,7 +12,7 @@ The fill() method in JavaScript is a versatile and powerful tool for initializin
 
 ```js
 const array = [1, 2, 3, 4];
-array.fill(0); // fill with 0 from start to end
+array.fill(0);
 console.log(array); // Output: [0, 0, 0, 0]
 ```
 
