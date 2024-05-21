@@ -2,7 +2,7 @@
 title: "backtracking with pruning-131,93 "
 publishedAt: 2024-05-01
 description: "add valid function to prun"
-slug: "40-backtrackingWithPruning"
+slug: "39-backtrackingWithPruning"
 isPublish: true
 ---
 

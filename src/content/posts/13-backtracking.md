@@ -354,7 +354,9 @@ function wordBreak(s: string, wordDict: string[]): boolean {
 
     function dfs(start: number) {
         if (start === s.length) return true
+
         if (memo.has(start)) return memo.get(start)
+        
         for (let i = start; i < s.length; i++) {
             const pre = s.slice(start, i + 1)
             if (set.has(pre)) {
