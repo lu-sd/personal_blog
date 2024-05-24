@@ -1,5 +1,5 @@
 ---
-title: "grand75-53"
+title: "grand75-53,542"
 publishedAt: 2024-05-22
 description: "this is kind of  a classic aglo problems"
 slug: "41-graid75"
@@ -26,5 +26,47 @@ function maxSubArray(nums: number[]): number {
   }
 
   return ans;
+}
+```
+
+542:Given an m x n binary matrix mat, return the distance of the nearest 0 for each cell.
+
+The distance between two adjacent cells is 1.
+
+```js
+function updateMatrix(mat: number[][]): number[][] {
+  const m = mat.length;
+  const n = mat[0].length;
+  const dir = [
+    [1, 0],
+    [-1, 0],
+    [0, 1],
+    [0, -1],
+  ];
+  const queue = [];
+
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      if (mat[i][j] === 0) {
+        queue.push([i, j]);
+      } else {
+        mat[i][j] = -1;
+      }
+    }
+  }
+
+  while (queue.length) {
+    const [x, y] = queue.shift();
+    for (const [r, c] of dir) {
+      const nr = x + r;
+      const nc = y + c;
+      if (nr >= 0 && nr < m && nc >= 0 && nc < n && mat[nr][nc] === -1) {
+        mat[nr][nc] = mat[x][y] + 1;
+        queue.push([nr, nc]);
+      }
+    }
+  }
+
+  return mat;
 }
 ```
