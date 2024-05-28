@@ -1,5 +1,5 @@
 ---
-title: "sliding Window Algorithm-3,438,239,159"
+title: "sliding Window Algorithm-3,438,239,159,76"
 publishedAt: 2024-02-21
 description: "make use of  map,set and stack"
 slug: "28-slidingWindows"
@@ -266,5 +266,51 @@ function maxSlidingWindow(nums: number[], k: number): number[] {
     }
   }
   return res;
+}
+```
+
+76:Given two strings s and t of lengths m and n,respectively, return the minimum window substring of s such that every character in t (including duplicates) is included in the window. If there is no such substring, return the empty string "".
+
+The testcases will be generated such that the answer is unique.
+
+Input: s = "ADOBECODEBANC", t = "ABC"
+Output: "BANC"
+
+```js
+function minWindow(s: string, t: string): string {
+  if (s.length === 0 || t.length === 0) return "";
+  let l = 0;
+  let ansL = -1;
+  let ansR = s.length;
+  const cntS = new Map();
+  const cntT = new Map();
+
+  for (const l of t) {
+    cntT.set(l, (cntT.get(l) || 0) + 1);
+  }
+  s;
+  function isCover() {
+    for (const [c, count] of cntT.entries()) {
+      if ((cntS.get(c) || 0) < count) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  for (let r = 0; r < s.length; r++) {
+    cntS.set(s[r], (cntS.get(s[r]) || 0) + 1);
+    while (isCover()) {
+      if (r - l < ansR - ansL) {
+        ansR = r;
+        ansL = l;
+      }
+      cntS.set(s[l], cntS.get(s[l]) - 1);
+      l++;
+    }
+  }
+
+  return ansL === -1 ? "" : s.slice(ansL, ansR + 1);
 }
 ```
