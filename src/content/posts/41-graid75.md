@@ -120,3 +120,60 @@ function check(graph) {
   return graph.size === res.length;
 }
 ```
+
+49:Group anagtams
+
+Input: strs = ["eat","tea","tan","ate","nat","bat"]
+Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+
+```js
+function groupAnagrams(strs: string[]): string[][] {
+  const map: Map<string, Array<string>> = new Map();
+  for (const i of strs) {
+    let key = i.split("").sort().join("");
+
+    if (!map.has(key)) {
+      map.set(key, []);
+    }
+    map.get(key).push(i);
+  }
+  return [...map.values()];
+}
+```
+
+271:Design an algorithm to encode a list of strings to a string. The encoded string is then sent over the network and is decoded back to the original list of strings.
+
+```js
+/**
+ * Encodes a list of strings to a single string.
+ */
+function encode(strs: string[]): string {
+  let res = "";
+  for (const s of strs) {
+    res += `${s.length}#${s}`;
+  }
+  return res;
+}
+
+/**
+ * Decodes a single string to a list of strings.
+ */
+function decode(s: string): string[] {
+  const res = [];
+  let i = 0;
+
+  while (i < s.length) {
+    let j = i;
+
+    while (s[j] !== "#") {
+      j++;
+    }
+    let len = parseInt(s.slice(i, j), 10);
+    i = j + 1;
+    j = i + len;
+    res.push(s.slice(i, j));
+    i = j;
+  }
+  return res;
+}
+```
