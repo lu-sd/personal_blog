@@ -177,3 +177,29 @@ function decode(s: string): string[] {
   return res;
 }
 ```
+
+383:Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise.
+
+Each letter in magazine can only be used once in ransomNote.
+
+```js
+function canConstruct(ransomNote: string, magazine: string): boolean {
+  if (magazine.length < ransomNote.length) return false;
+
+  const hash = new Array(26).fill(0);
+  const offset = 97;
+  for (let i = 0; i < magazine.length; i++) {
+    hash[magazine.charCodeAt(i) - offset]++;
+  }
+
+  for (let i = 0; i < ransomNote.length; i++) {
+    if (hash[ransomNote.charCodeAt(i) - offset] > 0) {
+      hash[ransomNote.charCodeAt(i) - offset]--;
+    } else {
+      return false;
+    }
+  }
+
+  return true;
+}
+```
