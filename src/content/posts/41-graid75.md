@@ -203,3 +203,20 @@ function canConstruct(ransomNote: string, magazine: string): boolean {
   return true;
 }
 ```
+409: built longest palindrome
+```js
+function longestPalindrome(s: string): number {
+    const set = new Set()
+    let ans = 0
+    for (let l of s) {
+        if (set.has(l)) {
+            set.delete(l)
+            ans += 2
+        } else {
+            set.add(l)
+        }
+    }
+    if (set.size > 0) ans += 1
+    return ans
+};
+```
