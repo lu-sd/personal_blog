@@ -1,5 +1,5 @@
 ---
-title: "grand75-53,542"
+title: "grand75-53,542,207,49,271,383,409"
 publishedAt: 2024-05-22
 description: "this is kind of  a classic aglo problems"
 slug: "41-graid75"
@@ -184,39 +184,49 @@ Each letter in magazine can only be used once in ransomNote.
 
 ```js
 function canConstruct(ransomNote: string, magazine: string): boolean {
-  if (magazine.length < ransomNote.length) return false;
-
-  const hash = new Array(26).fill(0);
-  const offset = 97;
-  for (let i = 0; i < magazine.length; i++) {
-    hash[magazine.charCodeAt(i) - offset]++;
-  }
-
-  for (let i = 0; i < ransomNote.length; i++) {
-    if (hash[ransomNote.charCodeAt(i) - offset] > 0) {
-      hash[ransomNote.charCodeAt(i) - offset]--;
-    } else {
-      return false;
-    }
+  for (const i of ransomNote) {
+    if (!magazine.includes(i)) return false;
+    magazine = magazine.replace(i, "");
   }
 
   return true;
 }
-```
-409: built longest palindrome
-```js
-function longestPalindrome(s: string): number {
-    const set = new Set()
-    let ans = 0
-    for (let l of s) {
-        if (set.has(l)) {
-            set.delete(l)
-            ans += 2
+// use map
+function canConstruct(ransomNote: string, magazine: string): boolean {
+    const map1 = new Map<string, number>();
+
+    for (const c of magazine) {
+        map1.set(c, 1 + ((map1.get(c)) ?? 0));
+    }
+
+    for (const c of ransomNote) {
+        if (!map1.has(c)) {
+            return false
         } else {
-            set.add(l)
+            map1.set(c, -1 + ((map1.get(c)) ?? 0));
+            if (map1.get(c) < 0) return false;
         }
     }
-    if (set.size > 0) ans += 1
-    return ans
+    return true;
+
 };
+```
+
+409: built longest palindrome
+
+```js
+function longestPalindrome(s: string): number {
+  const set = new Set();
+  let ans = 0;
+  for (let l of s) {
+    if (set.has(l)) {
+      set.delete(l);
+      ans += 2;
+    } else {
+      set.add(l);
+    }
+  }
+  if (set.size > 0) ans += 1;
+  return ans;
+}
 ```
