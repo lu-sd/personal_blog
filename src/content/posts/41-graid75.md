@@ -1,5 +1,5 @@
 ---
-title: "grand75-53,542,207,49,271,383,409"
+title: "grand75-53,542,207,49,271,383,409,994,133"
 publishedAt: 2024-05-22
 description: "this is kind of  a classic aglo problems"
 slug: "41-graid75"
@@ -228,5 +228,81 @@ function longestPalindrome(s: string): number {
   }
   if (set.size > 0) ans += 1;
   return ans;
+}
+```
+
+994:rotting oranges
+
+```js
+function orangesRotting(grid: number[][]): number {
+  const m = grid.length;
+  const n = grid[0].length;
+  const dir = [
+    [0, 1],
+    [0, -1],
+    [1, 0],
+    [-1, 0],
+  ];
+  const queue = [];
+  let fresh = 0;
+
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      if (grid[i][j] === 2) {
+        queue.push([i, j]);
+      }
+      if (grid[i][j] === 1) {
+        fresh++;
+      }
+    }
+  }
+  if (fresh === 0) return 0;
+
+  let time = -1;
+  while (queue.length > 0) {
+    let len = queue.length;
+
+    while (len--) {
+      const [r, c] = queue.shift();
+      for (const [dr, dc] of dir) {
+        const nr = r + dr;
+        const nc = c + dc;
+        if (nr >= 0 && nr < m && nc >= 0 && nc < n) {
+          if (grid[nr][nc] === 1) {
+            queue.push([nr, nc]);
+            grid[nr][nc] = 2;
+            fresh--;
+          }
+        }
+      }
+    }
+    time++;
+  }
+
+  return fresh === 0 ? time : -1;
+}
+```
+
+133:clone gragh
+
+```js
+function cloneGraph(node: _Node | null): _Node | null {
+  const map = new Map();
+
+  function dfs(root: _Node | null) {
+    if (root === null) return;
+    if (map.has(root)) {
+      return map.get(root);
+    }
+    const clone = new _Node(root.val, []);
+    map.set(root, clone);
+    for (const n of root.neighbors) {
+      clone.neighbors.push(dfs(n));
+    }
+
+    return clone;
+  }
+
+  return dfs(node);
 }
 ```
