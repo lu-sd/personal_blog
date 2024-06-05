@@ -1,5 +1,5 @@
 ---
-title: "grand75-53,542,49,271,383,409,994,133"
+title: "grand75-53,542,49,271,383,409,994,133,155"
 publishedAt: 2024-05-22
 description: "this is kind of  a classic aglo problems"
 slug: "41-graid75"
@@ -254,5 +254,38 @@ function cloneGraph(node: _Node | null): _Node | null {
   }
 
   return dfs(node);
+}
+```
+
+155:Min Stack
+
+```js
+class MinStack {
+  stack: number[][];
+  constructor() {
+    this.stack = [];
+  }
+
+  push(val: number): void {
+    if (this.stack.length === 0) {
+      this.stack.push([val, val]);
+    } else
+      this.stack.push([
+        val,
+        Math.min(val, this.stack[this.stack.length - 1][1]),
+      ]);
+  }
+
+  pop(): void {
+    this.stack.pop();
+  }
+
+  top(): number {
+    return this.stack[this.stack.length - 1][0];
+  }
+
+  getMin(): number {
+    return this.stack[this.stack.length - 1][1];
+  }
 }
 ```
