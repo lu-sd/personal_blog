@@ -1,5 +1,5 @@
 ---
-title: "grand75-53,542,207,49,271,383,409,994,133"
+title: "grand75-53,542,49,271,383,409,994,133"
 publishedAt: 2024-05-22
 description: "this is kind of  a classic aglo problems"
 slug: "41-graid75"
@@ -68,56 +68,6 @@ function updateMatrix(mat: number[][]): number[][] {
   }
 
   return mat;
-}
-```
-
-207:
-
-```js
-function canFinish(numCourses: number, prerequisites: number[][]): boolean {
-  const graph = new Map();
-  for (let task = 0; task < numCourses; task++) {
-    graph.set(task, []);
-  }
-  for (let req of prerequisites) {
-    graph.get(req[1]).push(req[0]);
-  }
-  return check(graph);
-}
-
-function bulildInDegree(graph) {
-  const inDegree = new Map();
-  for (const node of graph.keys()) {
-    inDegree.set(node, 0);
-  }
-  for (const node of graph.keys()) {
-    for (const pre of graph.get(node)) {
-      inDegree.set(pre, inDegree.get(pre) + 1);
-    }
-  }
-  return inDegree;
-}
-
-function check(graph) {
-  const res = [];
-  const q = [];
-  const inDegree = bulildInDegree(graph);
-  for (const node of inDegree.keys()) {
-    if (inDegree.get(node) == 0) {
-      q.push(node);
-    }
-  }
-  while (q.length > 0) {
-    const node = q.shift();
-    res.push(node);
-    for (const neighbor of graph.get(node)) {
-      inDegree.set(neighbor, inDegree.get(neighbor) - 1);
-      if (inDegree.get(neighbor) === 0) {
-        q.push(neighbor);
-      }
-    }
-  }
-  return graph.size === res.length;
 }
 ```
 
