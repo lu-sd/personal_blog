@@ -289,3 +289,22 @@ class MinStack {
   }
 }
 ```
+
+105:Construct Binary Tree from Preorder and Inorder Traversal
+
+```js
+function buildTree(preorder: number[], inorder: number[]): TreeNode | null {
+  if (preorder.length) return null;
+
+  const root = new TreeNode(preorder[0]);
+  const midIdx = inorder.indexOf(preorder[0]);
+
+  root.left = buildTree(
+    preorder.slice(1, midIdx + 1),
+    inorder.slice(0, midIdx)
+  );
+  root.right = buildTree(preorder.slice(midIdx + 1), inorder.slice(midIdx + 1));
+
+  return root;
+}
+```
