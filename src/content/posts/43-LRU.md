@@ -8,69 +8,66 @@ isPublish: true
 
 ```js
 class Node {
-  constructor(key = 0, value = 0) {
+  key: number;
+  val: number;
+  pre: Node | null;
+  next: Node | null;
+  constructor(key = 0, val = 0) {
     this.key = key;
-    this.value = value;
-    this.prev = null;
+    this.val = val;
+    this.pre = null;
     this.next = null;
   }
 }
-
 class LRUCache {
-  constructor(capacity) {
+  capacity: number;
+  map: Map<number, Node>;
+  dummy: Node;
+  constructor(capacity: number) {
     this.capacity = capacity;
-    this.dummy = new Node(); // 哨兵节点
-    this.dummy.prev = this.dummy;
+    this.dummy = new Node();
+    this.dummy.pre = this.dummy;
     this.dummy.next = this.dummy;
-    this.keyToNode = new Map();
+    this.map = new Map();
   }
 
   getNode(key) {
-    if (!this.keyToNode.has(key)) {
-      // 没有这本书
-      return null;
-    }
-    const node = this.keyToNode.get(key); // 有这本书
-    this.remove(node); // 把这本书抽出来
-    this.pushFront(node); // 放在最上面
+    if (!this.map.has(key)) return null;
+    const node = this.map.get(key);
+    this.remove(node);
+    this.pushTop(node);
     return node;
   }
-
-  get(key) {
+  get(key: number): number {
     const node = this.getNode(key);
-    return node ? node.value : -1;
+    return node ? node.val : -1;
   }
 
-  put(key, value) {
+  put(key: number, value: number): void {
     let node = this.getNode(key);
     if (node) {
-      // 有这本书
-      node.value = value; // 更新 value
+      node.val = value;
       return;
     }
-    node = new Node(key, value); // 新书
-    this.keyToNode.set(key, node);
-    this.pushFront(node); // 放在最上面
-    if (this.keyToNode.size > this.capacity) {
-      // 书太多了
-      const backNode = this.dummy.prev;
-      this.keyToNode.delete(backNode.key);
-      this.remove(backNode); // 去掉最后一本书
+    node = new Node(key, value);
+    this.map.set(key, node);
+    this.pushTop(node);
+    if (this.map.size > this.capacity) {
+      const last = this.dummy.pre;
+      this.map.delete(last.key);
+      this.remove(last);
     }
   }
 
-  // 删除一个节点（抽出一本书）
-  remove(x) {
-    x.prev.next = x.next;
-    x.next.prev = x.prev;
+  remove(x: Node) {
+    x.pre.next = x.next;
+    x.next.pre = x.pre;
   }
-
-  // 在链表头添加一个节点（把一本书放在最上面）
-  pushFront(x) {
-    x.prev = this.dummy;
+  pushTop(x: Node) {
+    x.pre = this.dummy;
     x.next = this.dummy.next;
-    x.prev.next = x;
-    x.next.prev = x;
+    x.pre.next = x;
+    x.next.pre = x;
   }
 }
 ```

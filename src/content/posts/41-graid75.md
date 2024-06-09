@@ -308,3 +308,40 @@ function buildTree(preorder: number[], inorder: number[]): TreeNode | null {
   return root;
 }
 ```
+
+79:Word Search
+
+```js
+function exist(board: string[][], word: string): boolean {
+  const m = board.length;
+  const n = board[0].length;
+  const dir = [
+    [1, 0],
+    [-1, 0],
+    [0, 1],
+    [0, -1],
+  ];
+  const seen = Array.from({ length: m }, () => Array(n).fill(false));
+
+  function dfs(x: number, y: number, idx: number) {
+    if (x < 0 || x >= m || y < 0 || y >= n || seen[x][y]) {
+      return false;
+    }
+    if (board[x][y] !== word[idx]) return false;
+    if (idx == word.length - 1) return true;
+    seen[x][y] = true;
+    for (const [dx, dy] of dir) {
+      if (dfs(x + dx, y + dy, idx + 1)) return true;
+    }
+    seen[x][y] = false;
+    return false;
+  }
+
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      if (dfs(i, j, 0)) return true;
+    }
+  }
+  return false;
+}
+```
