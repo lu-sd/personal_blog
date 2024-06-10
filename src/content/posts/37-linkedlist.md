@@ -1,5 +1,5 @@
 ---
-title: " Classic algo on linked list-203,82,83,19,206,92,25,707"
+title: " Classic algo on linked list-203,82,83,19,206,92,25,707,142,143"
 publishedAt: 2024-04-27
 description: "linked list"
 slug: "37-linkedlist"
@@ -322,5 +322,66 @@ class MyLinkedList {
         }
         this.size--
     }
+}
+```
+
+142:Given the head of a linked list, return the node where the cycle begins. If there is no cycle, return null.
+
+```js
+function detectCycle(head: ListNode | null): ListNode | null {
+  let slow = head;
+  let fast = head;
+  while (fast && fast.next) {
+    fast = fast.next.next;
+    slow = slow.next;
+    if (fast === slow) {
+      while (slow !== head) {
+        slow = slow.next;
+        head = head.next;
+      }
+      return slow;
+    }
+  }
+  return null;
+}
+```
+
+143:Reorder List
+
+```js
+function reorderList(head: ListNode | null): void {
+  function midNode(head) {
+    let s = head;
+    let f = head;
+    while (f && f.next) {
+      f = f.next.next;
+      s = s.next;
+    }
+    return s;
+  }
+
+  function reverse(head) {
+    let pre = null;
+    let cur = head;
+    while (cur) {
+      const nxt = cur.next;
+      cur.next = pre;
+      pre = cur;
+      cur = nxt;
+    }
+    return pre;
+  }
+
+  const mid = midNode(head);
+  let head2 = reverse(mid);
+
+  while (head2.next !== null) {
+    const nxt = head.next;
+    const nxt2 = head2.next;
+    head.next = head2;
+    head2.next = nxt;
+    head = nxt;
+    head2 = nxt2;
+  }
 }
 ```
