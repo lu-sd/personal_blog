@@ -1,5 +1,5 @@
 ---
-title: "grand75-53,542,49,271,383,409,994,133,155"
+title: "grand75-53,542,49,271,383,409,994,133,155,102"
 publishedAt: 2024-05-22
 description: "this is kind of  a classic aglo problems"
 slug: "41-graid75"
@@ -343,5 +343,28 @@ function exist(board: string[][], word: string): boolean {
     }
   }
   return false;
+}
+```
+
+102:Binary Tree Level Order Traversal( use DFS)
+
+```js
+function levelOrder(root: TreeNode | null): number[][] {
+  if (root == null) return [];
+
+  const res = [];
+
+  function dfs(node: TreeNode | null, level: number) {
+    if (res.length == level) {
+      res.push([]);
+    }
+    res[level].push(node.val);
+    if (node.left !== null) dfs(node.left, level + 1);
+    if (node.right !== null) dfs(node.right, level + 1);
+  }
+
+  dfs(root, 0);
+
+  return res;
 }
 ```
