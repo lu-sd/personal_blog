@@ -368,3 +368,41 @@ function levelOrder(root: TreeNode | null): number[][] {
   return res;
 }
 ```
+
+17:Letter Combinations of a Phone Number
+
+```js
+function letterCombinations(digits: string): string[] {
+  if (digits.length === 0) return [];
+
+  const dict = [
+    "",
+    "",
+    "abc",
+    "def",
+    "ghi",
+    "jkl",
+    "mno",
+    "pqrs",
+    "tuv",
+    "wxyz",
+  ];
+  const res = [];
+  const path = [];
+
+  function dfs() {
+    if (path.length === digits.length) {
+      res.push(path.join(""));
+      return;
+    }
+    const num = digits[path.length];
+    for (const ch of dict[num]) {
+      path.push(ch);
+      dfs();
+      path.pop();
+    }
+  }
+  dfs();
+  return res;
+}
+```
