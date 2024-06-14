@@ -1,7 +1,7 @@
 ---
-title: "grand75-53,542,49,271,383,409,994,133,155,102"
+title: "graid75-53,542,49,271,383,409,994,133,155,102,127"
 publishedAt: 2024-05-22
-description: "this is kind of  a classic aglo problems"
+description: "this is kind of classic aglo problems"
 slug: "41-graid75"
 isPublish: true
 ---
@@ -327,12 +327,17 @@ function exist(board: string[][], word: string): boolean {
     if (x < 0 || x >= m || y < 0 || y >= n || seen[x][y]) {
       return false;
     }
+
     if (board[x][y] !== word[idx]) return false;
+
     if (idx == word.length - 1) return true;
+
     seen[x][y] = true;
+
     for (const [dx, dy] of dir) {
       if (dfs(x + dx, y + dy, idx + 1)) return true;
     }
+
     seen[x][y] = false;
     return false;
   }
@@ -346,7 +351,7 @@ function exist(board: string[][], word: string): boolean {
 }
 ```
 
-102:Binary Tree Level Order Traversal( use DFS)
+102:Binary Tree Level Order Traversal(use DFS)
 
 ```js
 function levelOrder(root: TreeNode | null): number[][] {
@@ -404,5 +409,40 @@ function letterCombinations(digits: string): string[] {
   }
   dfs();
   return res;
+}
+```
+
+127:Word Ladder
+
+```js
+function ladderLength(
+  beginWord: string,
+  endWord: string,
+  wordList: string[]
+): number {
+  const set = new Set(wordList);
+  const queue: [string, number][] = [[beginWord, 1]];
+  const letters = Array.from({ length: 26 }, (_, i) =>
+    String.fromCharCode(i + 97)
+  );
+
+  while (queue.length > 0) {
+    const [word, step] = queue.shift();
+
+    if (word === endWord) return step;
+
+    for (let i = 0; i < beginWord.length; i++) {
+      for (const l of letters) {
+        const newWord = word.slice(0, i) + l + word.slice(i + 1);
+
+        if (set.has(newWord)) {
+          queue.push([newWord, step + 1]);
+          set.delete(newWord);
+        }
+      }
+    }
+  }
+
+  return 0;
 }
 ```
