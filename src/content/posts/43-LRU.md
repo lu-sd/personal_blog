@@ -23,6 +23,7 @@ class LRUCache {
   capacity: number;
   map: Map<number, Node>;
   dummy: Node;
+
   constructor(capacity: number) {
     this.capacity = capacity;
     this.dummy = new Node();
@@ -33,6 +34,7 @@ class LRUCache {
 
   getNode(key) {
     if (!this.map.has(key)) return null;
+
     const node = this.map.get(key);
     this.remove(node);
     this.pushTop(node);
@@ -45,13 +47,16 @@ class LRUCache {
 
   put(key: number, value: number): void {
     let node = this.getNode(key);
+
     if (node) {
       node.val = value;
       return;
     }
+
     node = new Node(key, value);
     this.map.set(key, node);
     this.pushTop(node);
+
     if (this.map.size > this.capacity) {
       const last = this.dummy.pre;
       this.map.delete(last.key);
