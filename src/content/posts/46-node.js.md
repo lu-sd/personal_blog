@@ -26,3 +26,35 @@ fs.appendFile("mynewfile1.txt", "Hello content!", function (err) {
   console.log("Saved!");
 });
 ```
+
+## Node.js http module
+
+Node.js can handle HTTP requests by utilizing its built-in http module. This module provides the core functionality needed to create an HTTP server.
+
+```js
+const http = require('http');
+const server = http.createServer((req, res) => {
+    const http = require('http');
+
+const server = http.createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+
+    if (req.url === '/') {
+        res.write('Hello, World!');
+    } else if (req.url === '/about') {
+        res.write('About Page');
+    } else {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.write('404 Not Found');
+    }
+
+    res.end();
+});
+
+const port = 3000;
+server.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+});
+```
+
+While it is certainly possible to handle HTTP requests using Node.js without Express, doing so requires more manual setup and code. Express abstracts many of these details, making web application development faster and more manageable. However, understanding how to handle HTTP requests directly with Node.js can be beneficial for learning and for situations where you need a minimal or highly customized solution.
