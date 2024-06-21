@@ -1,7 +1,7 @@
 ---
 title: "Node.js Tutorial"
 publishedAt: 2024-06-16
-description: "Disjoint Set Union is also called Union Find because of its two operations - union and find. "
+description: "node built-in modules"
 slug: "46-node.js"
 isPublish: true
 ---
@@ -58,3 +58,18 @@ server.listen(port, () => {
 ```
 
 While it is certainly possible to handle HTTP requests using Node.js without Express, doing so requires more manual setup and code. Express abstracts many of these details, making web application development faster and more manageable. However, understanding how to handle HTTP requests directly with Node.js can be beneficial for learning and for situations where you need a minimal or highly customized solution.
+
+## URL module
+
+```js
+var url = require("url");
+var adr = "http://localhost:8080/default.htm?year=2017&month=february";
+var q = url.parse(adr, true);
+
+console.log(q.host); //returns 'localhost:8080'
+console.log(q.pathname); //returns '/default.htm'
+console.log(q.search); //returns '?year=2017&month=february'
+
+var qdata = q.query; //returns an object: { year: 2017, month: 'february' }
+console.log(qdata.month); //returns 'february'
+```
