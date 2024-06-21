@@ -19,6 +19,7 @@ class Node {
     this.next = null;
   }
 }
+
 class LRUCache {
   capacity: number;
   map: Map<number, Node>;
@@ -73,6 +74,79 @@ class LRUCache {
     x.next = this.dummy.next;
     x.pre.next = x;
     x.next.pre = x;
+  }
+}
+```
+
+Solution II
+
+```js
+class LNode {
+  key: number;
+  val: number;
+  pre: LNode | null = null;
+  next: LNode | null = null;
+
+  constructor(key = 0, val = 0) {
+    this.key = key;
+    this.val = val;
+  }
+}
+
+class LRUCache {
+  capacity: number;
+  dummy: LNode;
+  map: Map<number, LNode>;
+
+  constructor(capacity: number) {
+    this.capacity = capacity;
+    this.dummy = new LNode();
+    this.dummy.pre = this.dummy;
+    this.dummy.next = this.dummy;
+    this.map = new Map();
+  }
+
+  update(x: LNode) {
+    this.remove(x);
+    this.pushTop(x);
+  }
+
+  remove(x: LNode) {
+    x.pre.next = x.next;
+    x.next.pre = x.pre;
+  }
+
+  pushTop(x: LNode) {
+    x.pre = this.dummy;
+    x.next = this.dummy.next;
+    x.next.pre = x;
+    x.pre.next = x;
+  }
+
+  get(key: number): number {
+    if (!this.map.has(key)) return -1;
+
+    const node = this.map.get(key);
+    this.update(node);
+    return node.val;
+  }
+
+  put(key: number, value: number): void {
+    if (this.map.has(key)) {
+      const cur_node = this.map.get(key);
+      cur_node.val = value;
+      this.update(cur_node);
+      return;
+    }
+
+    const new_node = new LNode(key, value);
+    this.map.set(key, new_node);
+    this.pushTop(new_node);
+    if (this.map.size > this.capacity) {
+      const last = this.dummy.pre;
+      this.map.delete(last.key);
+      this.remove(last);
+    }
   }
 }
 ```
