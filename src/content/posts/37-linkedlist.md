@@ -239,89 +239,95 @@ function reverseKGroup(head: ListNode | null, k: number): ListNode | null {
 707:Design a linked list
 
 ```js
-class linkedNode {
-    val: number
-    next: linkedNode | null
-    constructor(val: number, next = null) {
-        this.val = val
-        this.next = next
-    }
+class LNode {
+  value: number;
+  next: LNode | null;
+  constructor(value = 0, next = null) {
+    this.value = value;
+    this.next = next;
+  }
 }
 class MyLinkedList {
-    head: linkedNode | null = null
-    tail: linkedNode | null = null
-    size = 0
-    constructor() {
+  head: LNode | null = null;
+  tail: LNode | null = null;
+  size: number = 0;
+  constructor() {}
+
+  getNode(index: number) {
+    if (index >= this.size) {
+      return null;
     }
 
-    private getNode(index:number){
-        if(index === this.size - 1) return this.tail
-        let cur = this.head
-        while(index--){
-            cur = cur.next
-        }
-        return cur
+    let cur = this.head;
+    while (index--) {
+      cur = cur.next;
     }
 
-    get(index: number): number {
-        if(index > this.size - 1) return -1
-        return this.getNode(index).val
+    return cur;
+  }
+  get(index: number): number {
+    const node = this.getNode(index);
+    return node ? node.value : -1;
+  }
+
+  addAtHead(val: number): void {
+    const node = new LNode(val, this.head);
+    this.head = node;
+    this.size++;
+    if (this.tail == null) {
+      this.tail = node;
+    }
+  }
+
+  addAtTail(val: number): void {
+    if (this.head == null) {
+      this.addAtHead(val);
+      return;
+    }
+    const node = new LNode(val);
+    this.tail.next = node;
+    this.tail = node;
+    this.size++;
+  }
+
+  addAtIndex(index: number, val: number): void {
+    if (index > this.size) return;
+
+    if (index == 0) {
+      this.addAtHead(val);
+      return;
     }
 
-    addAtHead(val: number): void {
-        this.size++
-        const node = new linkedNode(val,this.head)
-        this.head = node
-        if(this.tail === null){
-            this.tail = node
-        }
+    if (index == this.size) {
+      this.addAtTail(val);
+      return;
     }
 
-    addAtTail(val: number): void {
-        if(this.head === null){
-            this.addAtHead(val)
-            return
-        }
-        this.size++
-        const node = new linkedNode(val,null)
-        this.tail.next = node
-        this.tail = node
+    const pre = this.getNode(index - 1);
+    const node = new LNode(val, pre.next);
+    pre.next = node;
+    this.size++;
+  }
+
+  deleteAtIndex(index: number): void {
+    if (index >= this.size) return;
+
+    if (index == 0) {
+      this.head = this.head.next;
+      this.size--;
+      if (this.size == 0) {
+        this.tail == null;
+      }
+      return;
     }
 
-    addAtIndex(index: number, val: number): void {
-        if(index > this.size) return
-        if(index === 0){
-            this.addAtHead(val)
-            return
-        }
-        if(index === this.size){
-            this.addAtTail(val)
-            return
-        }
-
-        const pre = this.getNode(index - 1)
-        const node = new linkedNode(val,pre.next)
-        pre.next = node
-        this.size++
+    const pre = this.getNode(index - 1);
+    if (index == this.size - 1) {
+      this.tail = pre;
     }
-
-    deleteAtIndex(index: number): void {
-        if(index > this.size - 1) return
-        if(index === 0){
-            this.head = this.head.next
-            this.size--
-            if(this.head === null){
-                this.tail = null
-            }
-            return
-        }
-        const pre = this.getNode(index - 1)
-        pre.next = pre.next.next
-        if(index === this.size - 1){
-            this.tail = pre
-        }
-        this.size--
-    }
+    pre.next = pre.next.next;
+    this.size--;
+  }
 }
 ```
 
