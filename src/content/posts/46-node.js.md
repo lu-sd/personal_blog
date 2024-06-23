@@ -6,6 +6,14 @@ slug: "46-node.js"
 isPublish: true
 ---
 
+Node.js uses asynchronous programming!
+
+A common task for a web server can be to open a file on the server and return the content to the client.Node.js has a set of built-in modules which you can use without any further installation.
+
+Consider modules to be the same as JavaScript libraries.
+A set of functions you want to include in your application.
+
+
 ## Node.js File System
 
 The Node.js file system module allows you to work with the file system on your computer.
