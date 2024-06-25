@@ -13,7 +13,6 @@ A common task for a web server can be to open a file on the server and return th
 Consider modules to be the same as JavaScript libraries.
 A set of functions you want to include in your application.
 
-
 ## Node.js File System
 
 The Node.js file system module allows you to work with the file system on your computer.
@@ -66,6 +65,31 @@ server.listen(port, () => {
 ```
 
 While it is certainly possible to handle HTTP requests using Node.js without Express, doing so requires more manual setup and code. Express abstracts many of these details, making web application development faster and more manageable. However, understanding how to handle HTTP requests directly with Node.js can be beneficial for learning and for situations where you need a minimal or highly customized solution.
+
+```js
+const express = require("express");
+const app = express();
+
+// Define routes
+app.get("/", (req, res) => {
+  res.send("Hello, World!");
+});
+
+app.get("/about", (req, res) => {
+  res.send("About Page");
+});
+
+// Handle 404 errors
+app.use((req, res) => {
+  res.status(404).send("404 Not Found");
+});
+
+// Start the server
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+```
 
 ## URL module
 
