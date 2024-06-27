@@ -1,7 +1,7 @@
 ---
 title: "notebook when learning next.js"
 publishedAt: 2024-06-25
-description: "React Router enables "client side routing"."
+description: "Key points for review"
 slug: "48-next.js"
 isPublish: true
 ---
@@ -67,3 +67,23 @@ export default function Page() {
   );
 }
 ```
+
+By default, Next.js uses Server Components. This allows you to automatically implement server rendering with no additional configuration, and you can opt into using Client Components when needed.
+
+In Next.js, the rendering work is further split by route segments to enable streaming and partial rendering, and there are three different server rendering strategies:
+
+- Static Rendering
+
+- Dynamic Rendering
+
+  #### Dynamic Functions
+
+  Dynamic functions rely on information that can only be known at request time such as a user's cookies, current requests headers, or the URL's search params. In Next.js, these dynamic functions are:
+
+  - cookies() and headers(): Using these in a Server Component will opt the whole route into dynamic rendering at request time.
+  - searchParams: Using the searchParams prop on a Page will opt the page into dynamic rendering at request time.
+
+- Streaming
+  Streaming is built into the Next.js App Router by default. This helps improve both the initial page loading performance, as well as UI that depends on slower data fetches that would block rendering the whole route. For example, reviews on a product page.
+
+  You can start streaming route segments using loading.js and UI components with React Suspense. See the Loading UI and Streaming section for more information.
