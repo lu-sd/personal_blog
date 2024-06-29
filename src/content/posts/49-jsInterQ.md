@@ -20,7 +20,7 @@ It has access to the global variables.
 
 Common use cases for closures include:
 
-- Data privacy
+- Data Encapsulation and Privacy
 
 ```js
 const createCounter = () => {
@@ -48,4 +48,78 @@ increment(2); // 3
 
 - Sharing data with event handlers and callbacks
 
+```js
+function fetchData(url) {
+  let cache = {};
+
+  return function () {
+    if (cache[url]) {
+      console.log("Returning cached data");
+      return Promise.resolve(cache[url]);
+    } else {
+      return fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          cache[url] = data;
+          return data;
+        });
+    }
+  };
+}
+
+const fetchUserData = fetchData("https://api.example.com/user");
+
+fetchUserData().then((data) => console.log(data)); // Fetches from network
+fetchUserData().then((data) => console.log(data)); // Returns cached data
+```
+
 Closure variables are live references to the outer-scoped variable, not a copy. This means that if you change the outer-scoped variable, the change will be reflected in the closure variable, and vice versa, which means that other functions declared in the same outer function will have access to the changes.
+
+```js
+function outerFunction() {
+  let counter = 0;
+
+  function innerFunction() {
+    counter++;
+    console.log(counter);
+  }
+
+  return innerFunction;
+}
+
+const increment = outerFunction();
+
+increment(); // 1
+increment(); // 2
+increment(); // 3
+```
+
+In this example:
+
+- outerFunction declares a variable counter and defines an innerFunction that increments and logs counter.
+
+- outerFunction returns the innerFunction, creating a closure that captures the reference to counter.
+
+* Each time increment is called, it references the same counter variable from outerFunction's scope, incrementing its value.
+
+If closures captured copies of the variables, each call to increment would work with a different counter value, and the output would always be 1:
+
+```js
+function outerFunction() {
+  let counter = 0;
+
+  function innerFunction() {
+    let localCounter = counter; // Hypothetical copy of `counter`
+    localCounter++;
+    console.log(localCounter);
+  }
+
+  return innerFunction;
+}
+
+const increment = outerFunction();
+
+increment(); // Hypothetical output: 1
+increment(); // Hypothetical output: 1
+increment(); // Hypothetical output: 1
+```
