@@ -1,7 +1,7 @@
 ---
 title: "React Router"
 publishedAt: 2024-06-17
-description: "React Router enables "client side routing"."
+description: "React Router enables client side routing"
 slug: "47-reactRouter"
 isPublish: true
 ---

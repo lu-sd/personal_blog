@@ -123,3 +123,38 @@ increment(); // Hypothetical output: 1
 increment(); // Hypothetical output: 1
 increment(); // Hypothetical output: 1
 ```
+
+### What is a Promise?
+
+A Promise in JavaScript is an object representing the eventual completion or failure of an asynchronous operation.
+
+Stateful: A Promise is in one of three states:
+
+- Pending: Initial state, neither fulfilled nor rejected.
+- Fulfilled: The operation completed successfully.
+- Rejected: The operation failed.
+
+Immutable: Once a Promise is fulfilled or rejected, its state cannot change. It becomes immutable, permanently holding its result. This makes Promises reliable in asynchronous flow control.
+
+### What is TypeScript?
+
+TypeScript is a superset of JavaScript, developed and maintained by Microsoft. It adds static typing to JavaScript, which is a dynamically typed language. Static typing helps developers catch errors early in the development process, improving code quality and maintainability.
+
+Interfaces: Interfaces allow you to specify abstract contracts that objects and functions must satisfy.
+
+```js
+interface User {
+  id: number;
+  name: string;
+}
+
+type GetUser = (userId: number) => User;
+
+const getUser: GetUser = (userId) => {
+  // Fetch user data from a database or API
+  return {
+    id: userId,
+    name: "John Doe",
+  };
+};
+```
