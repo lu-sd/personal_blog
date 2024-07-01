@@ -6,7 +6,7 @@ slug: "49-jsInterQ"
 isPublish: true
 ---
 
-### 1. What is a Closure?
+### What is a Closure?
 
 Closure is basically defining a function inside of some parent scope, and the function can access the things that are defined or inside it's parent scope.
 
@@ -136,6 +136,36 @@ Stateful: A Promise is in one of three states:
 
 Immutable: Once a Promise is fulfilled or rejected, its state cannot change. It becomes immutable, permanently holding its result. This makes Promises reliable in asynchronous flow control.
 
+#### Creat a custom promise
+
+```js
+const demoPromise = new Promise((resolve) => {
+  // Do some sort of asynchronous work, and then
+  // call `resolve()` to fulfill the Promise.
+});
+demoPromise.then(() => {
+  // This callback will be called when
+  // the Promise is fulfilled!
+});
+```
+
+```js
+function wait(duration) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, duration);
+  });
+}
+const timeoutPromise = wait(1000);
+timeoutPromise.then(() => {
+  console.log("1 second later!");
+});
+```
+
+- We have a new utility function, wait. This function takes a single parameter, duration. Our goal is to use this function as a sort of sleep function, but one that works fully asynchronously.
+- Inside wait, we’re creating and returning a new Promise. Promises don’t do anything on their own; we need to call the resolve function when the async work is completed.
+- Inside the Promise, we start a new timer with setTimeout. We’re feeding it the resolve function we got from the Promise, as well as the duration supplied by the user.
+- When the timer elapses, it will invoke the supplied callback. This creates a sort of chain reaction: setTimeout calls resolve, which signals that the Promise is fulfilled, which causes the .then() callback to be fired as well.
+
 ### What is TypeScript?
 
 TypeScript is a superset of JavaScript, developed and maintained by Microsoft. It adds static typing to JavaScript, which is a dynamically typed language. Static typing helps developers catch errors early in the development process, improving code quality and maintainability.
@@ -158,3 +188,8 @@ const getUser: GetUser = (userId) => {
   };
 };
 ```
+
+### what is hoisting
+
+Hoisting is the default behaviour of javascript where all the variable and function declarations are moved on top.
+s
