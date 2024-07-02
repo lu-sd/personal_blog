@@ -254,20 +254,20 @@ class MyLinkedList {
   constructor() {}
 
   getNode(index: number) {
-    if (index >= this.size) {
-      return null;
-    }
-
     let cur = this.head;
+
     while (index--) {
       cur = cur.next;
     }
 
     return cur;
   }
+
   get(index: number): number {
-    const node = this.getNode(index);
-    return node ? node.value : -1;
+    if (index >= this.size) {
+      return -1;
+    }
+    return this.getNode(index).value;
   }
 
   addAtHead(val: number): void {
