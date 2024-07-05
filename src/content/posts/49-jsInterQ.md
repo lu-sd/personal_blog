@@ -195,7 +195,15 @@ Hoisting is the default behaviour of javascript where all the variable and funct
 
 ### what is DOM?
 
-The Document Object Model (DOM) is a programming interface for web documents.The DOM represents the document as a tree of nodes, where each node corresponds to a part of the document. When the browser tries to render an HTML document, it creates an object based on the HTML document called DOM. Using this DOM, we can manipulate or change various elements inside the HTML document.
+The Document Object Model (DOM) is a programming interface for web documents,represents all page content as objects that can be modified.
+
+The document object is the main “entry point” to the page. We can change or create anything on the page using it.
+
+An HTML/XML document is represented inside the browser as the DOM tree.
+
+- Tags become element nodes and form the structure.
+- Text becomes text nodes.
+- …etc, everything in HTML has its place in DOM, even comments.
 
 ### what is react virtual DOM
 
