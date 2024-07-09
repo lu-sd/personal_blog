@@ -229,3 +229,15 @@ Virtual DOM: React minimizes performance issues by batching updates and only app
 
 DOM: Imperative approach, where developers describe how to change the UI.
 Virtual DOM: Declarative approach, where developers describe what the UI should look like, and React handles the changes.
+
+### what is callback
+
+A callback is a function that you pass into another function as an argument, and this callback function gets executed (or "called back") after the completion of that function.
+
+Why Use Callbacks?
+
+- Asynchronous Operations:JavaScript is single-threaded, meaning it can execute only one task at a time. To handle tasks that take time (like network requests, file reading, or timers) without blocking the main thread, JavaScript uses asynchronous operations. Callbacks allow these asynchronous operations to be handled efficiently.
+
+- Event Handling:JavaScript is widely used in web development where handling user events (like clicks, key presses, or mouse movements) is essential. Callbacks are used to define what should happen when these events occur.
+
+* Modular and Reusable Code:Callbacks help in writing modular and reusable code by allowing functions to be more flexible. You can pass different callback functions to the same function to perform various tasks.
