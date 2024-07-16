@@ -68,14 +68,14 @@ function wordBreak(s: string, wordDict: string[]): boolean {
   const dp: boolean[] = Array(s.length + 1).fill(false);
   dp[0] = true; // Base case: empty string
   const len = wordDict.map((item) => item.length);
-  const steps = new Set(temp);
+  const steps = new Set(len);
 
   for (let i = 0; i <= s.length; i++) {
     for (const step of steps) {
       if (i >= step) {
         const end = s.slice(i - step, i);
         if (dp[i - step]) {
-          if (set.has(end)) {
+          if (wordSet.has(end)) {
             dp[i] = true;
             break;
           }

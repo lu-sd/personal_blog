@@ -1,6 +1,6 @@
 ---
 title: "Tailwinds css layout practise"
-publishedAt: 2024-06-27
+publishedAt: 2024-07-15
 description: "using different way to great a grid layout"
 slug: "50-grid"
 isPublish: true
