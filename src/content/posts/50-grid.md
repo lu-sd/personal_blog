@@ -26,3 +26,15 @@ isPublish: true
     <ContentCard  title="test3" />
     <ContentCard  title="test3" />
 ```
+
+### Flexbox or Grid: Which Should You Use?
+
+Flexbox is more content-driven, while Grid is more layout-driven.
+
+Flexbox excels in flexible, responsive designs, while Grid is better for complex, precise layouts.
+
+Flexbox is more content-driven, meaning it adjusts the layout based on the size of the items within the container,which means intrinsic size.
+
+Grid really excels in a rigid or structured layout from the parent.
+
+Sometimes, you may need to use both Flexbox and Grid together. For example, you might use Grid to define the overall page structure and then use Flexbox within individual components for their internal layout. This allows you to leverage the strengths of both layout models.
