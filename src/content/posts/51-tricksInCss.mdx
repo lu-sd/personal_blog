@@ -1,0 +1,16 @@
+---
+title: "Tricks in tailwindCss"
+publishedAt: 2024-07-18
+description: "One day maybe save your life"
+slug: "tricksInCss"
+isPublish: true
+---
+### transition from height 0 to auto 
+```html
+ <div class="m-4 grid grid-rows-[0] rounded-md bg-blue-200 bg-opacity-40 p-4 transition-all duration-500 ease-in-out hover:grid-rows-1">
+      <div class="overflow-hidden">Expandable content</div>
+  </div>
+```
+<div class="m-4 grid grid-rows-[0] rounded-md bg-blue-200 bg-opacity-40 p-4 transition-all duration-500 ease-in-out hover:grid-rows-1">
+    <div class="overflow-hidden">Expandable content</div>
+</div>
