@@ -302,3 +302,39 @@ function SearchInput() {
 
 export default SearchInput;
 ```
+
+### what is state and useState
+
+Components often need to change what’s on the screen as a result of an interaction. In React, this kind of component-specific memory is called state.
+
+Use a state variable when a component needs to “remember” some information between renders.
+
+State is local to a component instance on the screen. In other words, if you render the same component twice, each copy will have completely isolated state! Changing one of them will not affect the other.
+
+This is what makes state different from regular variables that you might declare at the top of your module. State is not tied to a particular function call or a place in the code, but it’s “local” to the specific place on the screen.
+
+Unlike props, state is fully private to the component declaring it. The parent component can’t change it. This lets you add state to any component or remove it without impacting the rest of the components.
+
+State variables are declared by calling the useState Hook.
+
+To update a component with new data, two things need to happen:
+
+1.Retain the data between renders.
+2.Trigger React to render the component with new data (re-rendering).
+
+The useState Hook provides those two things:
+
+1.A state variable to retain the data between renders.
+2.A state setter function to update the variable and trigger React to render the component again.
+
+### what is rendering in react?
+
+“Rendering” is React calling your components.
+
+On initial render, React will call the root component.
+For subsequent renders, React will call the function component whose state update triggered the render.
+
+Any screen update in a React app happens in three steps:
+Trigger
+Render
+Commit
