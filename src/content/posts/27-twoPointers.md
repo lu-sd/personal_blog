@@ -165,17 +165,17 @@ function maximumSubarraySum(nums: number[], k: number): number {
 }
 
 function maximumSubarraySum2(nums: number[], k: number): number {
-  let right = 0;
   let left = 0;
   let ans = 0;
   let sum = 0;
 
-  while (right != nums.length) {
-    sum += nums[right++];
+  for (let right = 0; right < nums.length; right++) {
+    sum += nums[right];
 
-    if (right - left == k) {
+    if (right - left + 1 === k) {
       ans = Math.max(ans, sum);
-      sum -= nums[left++];
+      sum -= nums[left];
+      l++;
     }
   }
   return ans;
@@ -193,22 +193,21 @@ A subarray is a contiguous non-empty sequence of elements within an array.
 
 ```js
 function maximumSubarraySum(nums: number[], k: number): number {
-  let right = 0;
   let left = 0;
   let set = new Set();
   let ans = 0;
   let sum = 0;
 
-  while (right != nums.length) {
+  for (let right = 0; right < nums.length; right++) {
     while (set.has(nums[right])) {
       set.delete(nums[left]);
       sum -= nums[left++];
     }
 
     set.add(nums[right]);
-    sum += nums[right++];
+    sum += nums[right];
 
-    if (right - left == k) {
+    if (right - left + 1 == k) {
       ans = Math.max(ans, sum);
       set.delete(nums[left]);
       sum -= nums[left++];
@@ -236,7 +235,7 @@ function slidingWindowFlexibleLongest(input) {
         append input[right] to window
         while (invalid(window)) {// update left until window is valid again
             remove input[left] from window
-            ++left;
+            left++;
         }
         ans = max(ans, window);// window is guaranteed to be valid here
     }
@@ -259,7 +258,7 @@ function slidingWindowFlexibleShortest(input) {
         while (valid(window)) {
             ans = min(ans, window);   // window is guaranteed to be valid here
             remove input[left] from window
-            ++left;
+            left++;
         }
     }
     return ans;
