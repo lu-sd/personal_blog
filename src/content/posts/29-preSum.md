@@ -33,6 +33,7 @@ function subarraySum(arr, target) {
   let hashMap = new Map(); // Stores prefix sums and their corresponding indices
   hashMap.set(0, -1); // Initialize with sum 0 at index -1 to handle the case where the subarray starts from index 0
 
+  // can simplfied as hashMap = new Map([[0,-1]]), the reason can be found below
   for (let i = 0; i < arr.length; i++) {
     prefixSum += arr[i]; // Update the running total (prefix sum)
     // Check if the current prefix sum minus the target exists in the map
@@ -64,7 +65,7 @@ function subarraySumTotal(arr, target) {
 
   for (let i = 0; i < arr.length; i++) {
     prefixSum += arr[i]; // Update current sum
-    const diff = curSum - target;
+    const diff = prefixSum - target;
 
     if (hashMap.has(diff)) {
       count += hashMap.get(diff); // Add the number of those subarrays to count
@@ -76,30 +77,6 @@ function subarraySumTotal(arr, target) {
   return count; // Return the total count of subarrays summing to target
 }
 ```
-
-## Sliding Window
-
-The Sliding Window algorithm involves maintaining a subset of items from the array as a window and sliding this window across the array to find a subarray that satisfies a certain condition, such as a specific sum or length. This technique is highly efficient for problems that involve contiguous sequences with a given property because it reduces the need for nested loops, thus lowering the time complexity.
-
-### Advantages:
-
-Efficiency: Often allows for solving problems in linear time by avoiding unnecessary re-computation for overlapping parts of the array.
-
-Simplicity: The logic is generally straightforward and involves expanding and shrinking the window based on the current sum or condition relative to the target.
-
-### Use Cases:
-
-Finding the longest/shortest subarray with a sum equal to or greater/less than a given value.
-
-Problems requiring the checking of every contiguous subarray for a condition, such as maximum sum or specific character frequency in a string.
-
-# Choosing Between Them
-
-Prefix Sum is more suited for static arrays where the sum of ranges is frequently queried, or when dealing with finding exact sums in arrays that include negative numbers.
-
-Sliding Window is ideal for finding subarrays that satisfy certain conditions based on sums or other criteria, particularly when the array consists of positive numbers, or the problem involves optimizing for the length of the subarray (e.g., finding the smallest subarray with a sum greater than a given value).
-
-Both strategies are fundamental in algorithm design and problem-solving in coding interviews and competitive programming, offering efficient solutions for a variety of complex problems.
 
 523:Given an integer array nums and an integer k, return true if nums has a good subarray or false otherwise.
 
@@ -128,4 +105,29 @@ function checkSubarraySum(nums: number[], k: number): boolean {
 
   return false;
 }
+```
+
+#### the relationship between Map and Arrray
+
+```js
+const kvArray = [
+  ["key1", "value1"],
+  ["key2", "value2"],
+];
+
+// Use the regular Map constructor to transform a 2D key-value Array into a map
+const myMap = new Map(kvArray);
+
+console.log(myMap.get("key1")); // "value1"
+
+// Use Array.from() to transform a map into a 2D key-value Array
+console.log(Array.from(myMap)); // Will show you exactly the same Array as kvArray
+
+// A succinct way to do the same, using the spread syntax
+console.log([...myMap]);
+
+// Or use the keys() or values() iterators, and convert them to an array
+console.log(Array.from(myMap.keys())); // ["key1", "key2"]
+
+//
 ```

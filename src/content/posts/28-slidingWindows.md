@@ -1,7 +1,7 @@
 ---
 title: "sliding Window Algorithm-3,438,239,159,76"
 publishedAt: 2024-02-21
-description: "make use of  map,set and stack"
+description: "make use of map,set and stack"
 slug: "28-slidingWindows"
 isPublish: true
 ---
@@ -43,7 +43,7 @@ function slidingWindowFlexibleLongest(input) {
         append input[right] to window
         while (invalid(window)) {     // update left until window is valid again
             remove input[left] from window
-            ++left;
+            left++;
         }
         ans = max(ans, window);       // window is guaranteed to be valid here
     }
@@ -163,7 +163,7 @@ function compareMaps(map1, map2) {
 }
 ```
 
-There is anther methods using String.charCodeAt()
+There is another method using String.charCodeAt()
 
 ```js
 function findAnagrams(s: string, p: string): number[] {
