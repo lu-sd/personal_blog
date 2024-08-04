@@ -43,28 +43,20 @@ function longestCommonSubsequence(text1: string, text2: string): number {
 
 
 function longestCommonSubsequence(text1: string, text2: string): number {
-    // n and m store the lengths of text1 and text2, respectively
-    const n: number = text1.length, m: number = text2.length;
+    const m = text1.length
+    const n = text2.length
+    const dp = Array.from({length:m + 1}, () => Array(n + 1).fill(0))
 
-    // Initialize a 2D array f with dimensions (n+1) x (m+1), filled with 0s
-    // This array will store the lengths of LCS for different pairs of prefixes of text1 and text2
-    const f: number[][] = Array.from({length: n + 1}, () => Array(m + 1).fill(0));
-
-    // Iterate over each character of text1 (i) and text2 (j)
-    for (let i = 0; i < n; i++) {
-        for (let j = 0; j < m; j++) {
-            // If characters at current positions in both strings match
-            if (text1[i] === text2[j]) {
-                // Update the current cell with the value from the top-left cell plus one
-                f[i + 1][j + 1] = f[i][j] + 1;
-            } else {
-                // If they don't match, take the maximum value from the cell above or to the left
-                f[i + 1][j + 1] = Math.max(f[i][j + 1], f[i + 1][j]);
+    for(let i = 1; i <= m; i++){
+        for(let j = 1; j <= n; j++){
+            if(text1[i -1] === text2[j-1]){
+                dp[i][j] = dp[i-1][j-1] + 1
+            }else{
+                dp[i][j] = Math.max(dp[i-1][j],dp[i][j-1])
             }
         }
     }
 
-    // Return the bottom-right cell of the array, which contains the length of LCS
-    return f[n][m];
+    return dp[m][n]
 };
 ```

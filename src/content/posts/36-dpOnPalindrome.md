@@ -1,5 +1,5 @@
 ---
-title: "classic DP on Palindrome Algo-647,5,516"
+title: "classic DP on Palindrome Algo-647,5,516,1312"
 publishedAt: 2024-04-08
 description: "palindrome Substring and Subsequence "
 slug: "36-dpOnPalindrome"
@@ -88,6 +88,27 @@ function longestPalindromeSubseq(s: string): number {
         dp[i][j] = dp[i + 1][j - 1] + 2;
       } else {
         dp[i][j] = Math.max(dp[i + 1][j], dp[i][j - 1]);
+      }
+    }
+  }
+
+  return dp[0][n - 1];
+}
+```
+
+1312.Minimum Insertion Steps to Make a String Palindrome
+
+```js
+function minInsertions(s: string): number {
+  const n = s.length;
+  const dp = Array.from({ length: n }, () => Array(n).fill(0));
+
+  for (let i = n - 2; i >= 0; i--) {
+    for (let j = i + 1; j < n; j++) {
+      if (s[i] === s[j]) {
+        dp[i][j] = dp[i + 1][j - 1];
+      } else {
+        dp[i][j] = Math.min(dp[i + 1][j], dp[i][j - 1]) + 1;
       }
     }
   }
