@@ -136,3 +136,18 @@ Now if you edit the selected item, the message below will update immediately. Th
 import Menu from "@/codeSnippet/state.tsx"
 
 <Menu />
+
+### what is the different between value and default value in React forms?
+
+In React forms, value and defaultValue serve different purposes for managing the state of form text inputs. 
+
+"value"
+
+* Controlled Component: When you use value, you are creating a controlled component. This means that the form input's value is controlled by React state.
+* Two-way Binding: The value of the input is directly tied to the component's state. To update the input, you need to update the state.
+* Usage: when you need to have complete control over the input's value, such as for form validation or dynamic updates.
+
+"defaultValue"
+* Uncontrolled Component: When you use defaultValue, you are creating an uncontrolled component. The initial value is set, but React does not control its subsequent updates.
+* Initial Value: The input gets an initial value, but it does not update based on state changes. Instead, the DOM itself maintains the value.
+* Usage: Use defaultValue when you only need to set an initial value and don't need to control the input's state after the initial render.

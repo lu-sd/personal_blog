@@ -41,7 +41,7 @@ function minCostClimbingStairs(cost: number[]): number {
   dp[0] = 0;
   dp[1] = 0;
 
-  for (let i = 1; i <= n; i++) {
+  for (let i = 2; i <= n; i++) {
     for (const j of [1, 2]) {
       if (i >= j) {
         dp[i] = Math.min(dp[i - j] + cost[i - j], dp[i]);
