@@ -16,7 +16,7 @@ const presentation: Presentation = {
   title: "Hi, I’m Lu ✨",
   profile: "/profile.jpg",
   description:
-    "Hello, I'm a full stack developer with over *1 years* of web experience. I am currently working with *NextJS and Typescript*.",
+    "Hello,I am a self-driven full-stack software developer with *3 years* of experience in TypeScript, React, Next.js, and AWS Cloud Computing. My enthusiasm for technology fuels my continuous learning and adaptation to industry advancements. I am a quick learner who thrives in collaborative environments. In my free time, I enjoy running and cooking",
   socials: [
     {
       label: "Linkedin",
