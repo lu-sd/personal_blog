@@ -8,14 +8,13 @@ export type Project = {
 const projects: Project[] = [
   {
     title: "Portfolio / Blog",
-    techs: ["Astro"],
+    techs: ["Astro", "Tailwindcss"],
     link: "/",
   },
   {
-    title: "NextJS Dashboard",
-    techs: ["ReactJS (NextJS)", "TypeScript"],
-    link: "https://www.linablidi.fr/",
-    isComingSoon: true,
+    title: "Sample-sheet Validator",
+    techs: ["ReactJS (NextJS)", "TypeScript", "Tailwindcss"],
+    link: "https://ssc-nextjs.vercel.app",
   },
 ];
 
