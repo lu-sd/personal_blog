@@ -6,10 +6,12 @@ const initialItems = [
   { title: 'granola bar', id: 2 },
 ];
 
-export default function Menu() {
+export default function List() {
   const [items, setItems] = useState(initialItems);
-  const [selectedItem, setSelectedItem] = useState(
-    items[0]
+  const [selectedId, setSelectedId] = useState(0);
+
+  const selectedItem = items.find(item =>
+    item.id === selectedId
   );
 
   function handleItemChange(id, e) {
@@ -27,7 +29,7 @@ export default function Menu() {
 
   return (
     <>
-      <h2>What's your travel snack?</h2> 
+      <h2>What's your travel snack?</h2>
       <ul>
         {items.map((item, index) => (
           <li key={item.id}>
@@ -38,8 +40,9 @@ export default function Menu() {
               }}
             />
             {' '}
-            <button className = "border m-1 border-blue-300 border-spacing-3 rounded-sm p-1"onClick={() => {
-              setSelectedItem(item);
+            <button className="m-1 border-spacing-3 rounded-sm border border-blue-300 p-1"
+            onClick={() => {
+              setSelectedId(item.id);
             }}>Choose</button>
           </li>
         ))}
