@@ -2,7 +2,7 @@
 title: "Recursive component in React"
 publishedAt: 2024-07-21
 description: "Can be particularly useful for rendering hierarchical data structures like trees."
-slug: "recursiveComponent"
+slug: "52-recursiveComponent"
 isPublish: true
 ---
 

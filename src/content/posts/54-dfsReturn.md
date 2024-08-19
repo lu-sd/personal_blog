@@ -2,7 +2,7 @@
 title: "Understanding Recursion: Return Values, State Management, and Common Misunderstandings"
 publishedAt: 2024-08-16
 description: "In this learning note, I want to delved into the critical aspects of recursion, specifically focusing on how to manage return values and state within recursive functions. Using the example of finding the k-th smallest element in a Binary Search Tree (BST)"
-slug: "dfsReturn"
+slug: "54-dfsReturn"
 isPublish: true
 ---
 
