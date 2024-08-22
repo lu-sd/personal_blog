@@ -1,5 +1,5 @@
 ---
-title: " Classic algo on linked list-203,82,83,19,206,92,25,707,142,143"
+title: " Classic algo on linked list-203,82,83,19,206,234,92,25,707,142,143"
 publishedAt: 2024-04-27
 description: "linked list"
 slug: "37-linkedlist"
@@ -143,6 +143,75 @@ function reverseList(head: ListNode | null): ListNode | null {
     cur.next = pre;
     pre = cur;
     cur = nxt;
+  }
+
+  return pre;
+}
+```
+
+234:Given the head of a singly linked list, return true if it is a palindrome or false otherwise
+
+1. Use the slow and fast pointer.
+   This approach runs in O(n) time and uses O(1) extra space.
+
+```js
+function isPalindrome(head: ListNode | null): boolean {
+  if (head === null || head.next === null) {
+    return true;
+  }
+
+  // Step 1: Find the middle of the linked list
+  let fast = head;
+  let slow = head;
+
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+  if (fast !== null) {
+    slow = slow.next;
+  }
+  // Step 2: Reverse the linked list from slow
+  let left = head;
+  let right = reverse(slow);
+
+  function reverse(node: ListNode) {
+    let pre = null;
+    let cur = node;
+    while (cur !== null) {
+      let next = cur.next;
+      cur.next = pre;
+      pre = cur;
+      cur = next;
+    }
+    return pre;
+  }
+  // Step 3: Compare the two halves
+  while (right !== null) {
+    if (left.val !== right.val) return false;
+    left = left.next;
+    right = right.next;
+  }
+  return true;
+}
+```
+
+2. Use a recursive approach
+   This approach runs in O(n) time ,and space Complexity: O(n) (due to the call stack in the recursion)
+
+```js
+function reverseList(head: ListNode | null): ListNode | null {
+  if (head === null || head.next === null) {
+    return true;
+  }
+
+  let pre = null;
+  let cur = head;
+  while (cur !== null) {
+    let next = cur.next;
+    cur.next = pre;
+    pre = cur;
+    cur = next;
   }
 
   return pre;
