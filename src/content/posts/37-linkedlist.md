@@ -134,6 +134,7 @@ Input: head = [1,2,3,4,5]
 Output: [5,4,3,2,1]
 
 ```js
+// iterative
 function reverseList(head: ListNode | null): ListNode | null {
   let pre = null;
   let cur = head;
@@ -146,6 +147,14 @@ function reverseList(head: ListNode | null): ListNode | null {
   }
 
   return pre;
+}
+// recursive
+function reverseList(head: ListNode | null): ListNode | null {
+  if (head === null || head.next === null) return head;
+  let last = reverseList(head.next);
+  head.next.next = head;
+  head.next = null;
+  return last;
 }
 ```
 
