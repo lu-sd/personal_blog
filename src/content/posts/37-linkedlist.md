@@ -268,6 +268,50 @@ function reverseBetween(
 }
 ```
 
+Use a recursive approach,space Complexity: O(n) (due to the call stack in the recursion)
+
+```js
+function reverseBetween(
+  head: ListNode | null,
+  left: number,
+  right: number
+): ListNode | null {
+  let successor = null; //  will be used to connect the reversed part with the remaining part of the list
+
+  // Helper function to reverse the first 'n' nodes of the list.
+  function reverseN(head: ListNode, n: number) {
+    if (n === 1) {
+      // Base case: only one node to reverse.
+      successor = head.next; // Store the (n+1)th node to reconnect later.
+      return head; // Return the new head of the reversed segment.
+    }
+
+    let last = reverseN(head.next, n - 1);
+
+    // Reconnect the current node after the reversed segment.
+    head.next.next = head;
+
+    // Link the current node to the successor.
+    head.next = successor;
+
+    // Return the new head of the reversed segment.
+    return last;
+  }
+
+  // When the base case is hit (left == 1), the sublist starting at head.next
+  if (left === 1) {
+    return reverseN(head, right);
+  }
+
+  // Recur down the list, decreasing 'left' and 'right' to shift the problem.
+  // After reversed, the current node (head) will reconnect to this reversed segment.
+  head.next = reverseBetween(head.next, left - 1, right - 1);
+
+  // Return the original head as it’s outside the reversed segment.
+  return head;
+}
+```
+
 25:Given the head of a linked list, reverse the nodes of the list k at a time, and return the modified list.
 
 k is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of k then left-out nodes, in the end, should remain as it is.
