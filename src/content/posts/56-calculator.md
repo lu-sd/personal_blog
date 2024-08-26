@@ -3,7 +3,7 @@ title: "calculator-227,224"
 publishedAt: 2024-08-25
 description: "to calculate the result of a basic arithmetic expression represented as a string. It uses a stack to handle the operations and correctly respects operator precedence"
 slug: "56-calculator"
-ispublish: true
+isPublish: true
 ---
 
 227:Given a string s which represents an expression, evaluate this expression and return its value. s consists of integers and operators ('+', '-', '\*', '/') separated by some number of spaces.
