@@ -1,6 +1,6 @@
 ---
 title: "calculator-227,224"
-publishedat: 2024-08-25
+publishedAt: 2024-08-25
 description: "to calculate the result of a basic arithmetic expression represented as a string. It uses a stack to handle the operations and correctly respects operator precedence"
 slug: "56-calculator"
 ispublish: true
@@ -13,6 +13,7 @@ function calculate(s: string): number {
   function isNum(s: string) {
     return !isNaN(+s);
   }
+  s;
 
   let c = "";
   let sign = "+";
