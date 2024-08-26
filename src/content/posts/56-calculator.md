@@ -46,68 +46,67 @@ function calculate(s: string): number {
       num = 0;
     }
   }
+
   return stack.reduce((arr, cur) => arr + cur, 0);
 }
 ```
 
-224:s consists of digits, '+', '-','\*'.'/', '(', ')', and ' '.
+224: s consists of digits, '+', '-','\*','/', '(', ')', and ' '.
 
 ```js
 function calculate(s: string): number {
-    function isNum(s: string) {
-        return !isNaN(+s);
-    }
+  function isNum(s: string) {
+    return !isNaN(+s);
+  }
 
-    function dfs(s: string, i: number): [number, number] {
-        let c = '';
-        let sign = "+";
-        let num = 0;
-        const stack = [];
-        s = s.replace(/\s+/g, '');
+  function dfs(s: string, i: number): [number, number] {
+    let c = "";
+    let sign = "+";
+    let num = 0;
+    const stack = [];
+    s = s.replace(/\s+/g, "");
 
-        while (i < s.length) {
-            c = s[i];
+    while (i < s.length) {
+      c = s[i];
 
-            if (isNum(c)) {
-                num = num * 10 + (+c);
-            }
+      if (isNum(c)) {
+        num = num * 10 + +c;
+      }
 
-            if (c === "(") {
-                const [res, newIndex] = dfs(s, i + 1);
-                num = res;
-                i = newIndex; // Move the index forward
-            }
+      if (c === "(") {
+        const [res, newIndex] = dfs(s, i + 1);
+        num = res;
+        i = newIndex; // Move the index forward
+      }
 
-            if (i === s.length - 1 || !isNum(c) && c !== "(" && c !== " ") {
-                switch (sign) {
-                    case "+":
-                        stack.push(num);
-                        break;
-                    case "-":
-                        stack.push(-num);
-                        break;
-                    case "*":
-                        stack[stack.length - 1] *= num;
-                        break;
-                    case "/":
-                        stack[stack.length - 1] = Math.trunc(stack[stack.length - 1] / num);
-                        break;
-                }
-                sign = c;
-                num = 0;
-            }
-
-            if (c === ")") {
-                break; // Break out of the loop if a closing parenthesis is encountered
-            }
-
-            i++;
+      if (i === s.length - 1 || (!isNum(c) && c !== "(" && c !== " ")) {
+        switch (sign) {
+          case "+":
+            stack.push(num);
+            break;
+          case "-":
+            stack.push(-num);
+            break;
+          case "*":
+            stack[stack.length - 1] *= num;
+            break;
+          case "/":
+            stack[stack.length - 1] = Math.trunc(stack[stack.length - 1] / num);
+            break;
         }
-        return [stack.reduce((arr, cur) => arr + cur, 0), i];
+        sign = c;
+        num = 0;
+      }
+
+      if (c === ")") {
+        break; // Break out of the loop if a closing parenthesis is encountered
+      }
+
+      i++;
     }
+    return [stack.reduce((arr, cur) => arr + cur, 0), i];
+  }
 
-    return dfs(s, 0)[0];
+  return dfs(s, 0)[0];
 }
-}
-
 ```
