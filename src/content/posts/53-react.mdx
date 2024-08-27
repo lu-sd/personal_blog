@@ -2,7 +2,7 @@
 title: "Notebook in React"
 publishedAt: 2024-07-22
 description: "Best practices and good tips"
-slug: "53-state"
+slug: "53-react"
 isPublish: true
 ---
 
@@ -159,3 +159,40 @@ In React forms, value and defaultValue serve different purposes for managing the
 * Uncontrolled Component: When you use defaultValue, you are creating an uncontrolled component. The initial value is set, but React does not control its subsequent updates.
 * Initial Value: The input gets an initial value, but it does not update based on state changes. Instead, the DOM itself maintains the value.
 * Usage: Use defaultValue when you only need to set an initial value and don't need to control the input's state after the initial render.
+
+### purity vs side effect ?
+In react,for keeping component pure, You should not mutate any of the inputs that your components use for rendering. That includes props, state, and context. To update the screen, “set” state instead of mutating preexisting objects.
+
+While functional programming relies heavily on purity,at some point, somewhere, something has to change. That's kind of the point of programming! These changes—updating the screen, starting an animation, changing the data—are called side effects. They're things that happen “on the side”, not during rendering.
+
+For example, if you need to use a prop as the initial value of a component's state and potentially change that state later, you can do this safely by copying the prop's value into the component's state.
+
+Here's an example of how this can be done:
+```js
+import React, { useState, useEffect } from 'react';
+
+function MyComponent({ initialValue }) {
+  // Initialize state with the prop value
+  const [value, setValue] = useState(initialValue);
+
+  // This effect will updates the state with the new value. This ensures that your state reflects any updates to the prop after the component has been mounted.
+  useEffect(() => {
+    setValue(initialValue);
+  }, [initialValue]);
+
+  // handle function can update the state independently of the prop, allowing your component to manage its own state internally.
+  const handleChange = (newValue) => {
+    setValue(newValue);
+  };
+
+  return (
+    <div>
+      <p>Current Value: {value}</p>
+      <button onClick={() => handleChange(value + 1)}>Increment</button>
+    </div>
+  );
+}
+
+export default MyComponent;
+
+```

@@ -110,7 +110,7 @@ git pull --rebase origin main
 
 The most common use case for git pull --rebase is when you are working on a feature branch, and you want to incorporate the latest changes from the main branch without creating unnecessary merge commits.
 
-#### git pull --rebase vs git pull
+### git pull --rebase vs git pull
 
 ```bash
 git status:
@@ -148,7 +148,7 @@ A---B---C---D---E'---F' (local branch)
 
 ```
 
-### git merge --squash
+## git merge --squash
 
 Before the squash merge:
 
@@ -177,7 +177,7 @@ A---B---C---D---H  (main)
 
 - The original commits E, F, and G still exist in feature-branch, but they are not added to main's history.
 
-#### Use Cases for git merge --squash:
+### Use Cases for git merge --squash:
 
 - Clean and Linear History: You want to keep the history of your main branch clean and concise, without including every commit from a feature branch.It does not record the feature branch as a parent in the commit history.
 
