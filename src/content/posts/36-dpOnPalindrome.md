@@ -66,6 +66,9 @@ function longestPalindrome(s: string): string {
 }
 ```
 
+time:O(N^2) space:O(N^2)
+Note:if use two pointers, space can be O(1)
+
 516.Longest Palindromic Subsequence
 Given a string s, find the longest palindromic subsequence's length in s.
 
