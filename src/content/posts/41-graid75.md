@@ -1,5 +1,5 @@
 ---
-title: "graid75-53,542,49,271,383,409,994,133,155,102,127"
+title: "graid75-53,542,49,271,383,409,994,133,155,102,127,20i"
 publishedAt: 2024-05-22
 description: "this is kind of classic aglo problems"
 slug: "41-graid75"
@@ -444,5 +444,28 @@ function ladderLength(
   }
 
   return 0;
+}
+```
+
+20:Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+```js
+function isValid(s: string): boolean {
+  const dic = {
+    "{": "}",
+    "(": ")",
+    "[": "]",
+  };
+  const stack = [];
+  for (let i = 0; i < s.length; i++) {
+    const c = s[i];
+    if (dic[c]) {
+      stack.push(c);
+    } else {
+      if (stack.length === 0 || dic[stack.pop()] !== c) return false;
+    }
+  }
+
+  return stack.length === 0;
 }
 ```
