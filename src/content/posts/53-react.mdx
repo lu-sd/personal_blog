@@ -196,3 +196,68 @@ function MyComponent({ initialValue }) {
 export default MyComponent;
 
 ```
+### Remove unnecessary state
+When the button is clicked, this example should ask for the user’s name and then display an alert greeting them. You tried to use state to keep the name, but for some reason it shows “Hello, !“.
+```js
+import { useState } from 'react';
+
+export default function FeedbackForm() {
+  const [name, setName] = useState('');
+
+  function handleClick() {
+   setName(prompt('What is your name?'));
+    alert(`Hello, ${name}!`);
+  }
+
+  return (
+    <button onClick={handleClick}>
+      Greet
+    </button>
+  );
+}
+
+```
+State Update is Asynchronous: When you call setName, React schedules a state update, but it doesn't update name immediately within the same function execution. This is because React batches state updates to optimize rendering.
+
+To fix this, you can modify your handleClick function to use the value directly from the prompt instead of relying on the state immediately after setting it:
+```js
+import { useState } from 'react';
+
+export default function FeedbackForm() {
+  const [name, setName] = useState('');
+
+  function handleClick() {
+    const newName = prompt('What is your name?');
+    setName(newName);
+    alert(`Hello, ${newName}!`);
+  }
+
+  return (
+    <button onClick={handleClick}>
+      Greet
+    </button>
+  );
+}
+```
+* newName variable: This variable stores the value returned from prompt.
+* setName(newName): This updates the state with the new name.
+* alert uses newName: The alert uses the newName directly, ensuring it reflects the value just entered by the user.
+
+ If your only goal is to show the name immediately after the user inputs it, and you don't need to store the name for later use in the component, then you don't need to use React state (useState) at all.
+ ```jsx
+ export default function FeedbackForm() {
+  function handleClick() {
+    const name = prompt('What is your name?');
+    alert(`Hello, ${name}!`);
+  }
+
+  return (
+    <button onClick={handleClick}>
+      Greet
+    </button>
+  );
+}
+
+```
+You only need to use state when you want to retain some data across renders or use it in the rendering logic of your component.
+
