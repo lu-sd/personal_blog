@@ -327,6 +327,8 @@ The useState Hook provides those two things:
 1.A state variable to retain the data between renders.
 2.A state setter function to update the variable and trigger React to render the component again.
 
+In React, hooks are matched by their order in the component, so they must be called at the top level of your function components, not inside loops, conditions, or nested functions.
+
 ### what is rendering in react?
 
 “Rendering” is React calling your components.
