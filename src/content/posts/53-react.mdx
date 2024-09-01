@@ -217,6 +217,7 @@ export default function FeedbackForm() {
 }
 
 ```
+A state variable’s value never changes within a render
 State Update is Asynchronous: When you call setName, React schedules a state update, but it doesn't update name immediately within the same function execution. This is because React batches state updates to optimize rendering.
 
 To fix this, you can modify your handleClick function to use the value directly from the prompt instead of relying on the state immediately after setting it:
