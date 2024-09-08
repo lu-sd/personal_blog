@@ -63,7 +63,7 @@ You can use [] to access properties of an object, especially if the property nam
 
 ```js
 let obj = { name: "John", age: 30 };
-console.log(obj["name"]); // Outputs "John"
+console.log(obj["name"]); // Outputs "John" , also you can use obj.name
 
 let property = "name";
 console.log(obj[property]); // Outputs "John"
