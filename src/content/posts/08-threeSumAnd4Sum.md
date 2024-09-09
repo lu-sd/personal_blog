@@ -2,7 +2,7 @@
 title: "Algorithm-15,18"
 publishedAt: 2023-12-04
 description: "two pointers in sorted array"
-slug: "08-threeSum"
+slug: "08-threeSumAnd4Sum"
 isPublish: true
 ---
 
