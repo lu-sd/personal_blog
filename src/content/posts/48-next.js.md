@@ -8,14 +8,14 @@ isPublish: true
 
 There are four ways to navigate between routes in Next.js:
 
-- Using the <Link> Component
+- Using the `<Link>` Component
 - Using the useRouter hook (Client Components)
 - Using the redirect function (Server Components)
 - Using the native History API
 
-### <Link> Component
+### `<Link>` Component
 
-<Link> is a built-in component that extends the HTML <a> tag to provide prefetching and client-side navigation between routes. It is the primary and recommended way to navigate between routes in Next.js.
+`<Link>` is a built-in component that extends the HTML `<a>` tag to provide prefetching and client-side navigation between routes. It is the primary and recommended way to navigate between routes in Next.js.
 
 You can use usePathname()to determine if a link is active. For example, to add a class to the active link, you can check if the current pathname matches the href of the link:
 
@@ -76,14 +76,9 @@ In Next.js, the rendering work is further split by route segments to enable stre
 
 - Dynamic Rendering
 
-  #### Dynamic Functions
+### Dynamic Functions
 
-  Dynamic functions rely on information that can only be known at request time such as a user's cookies, current requests headers, or the URL's search params. In Next.js, these dynamic functions are:
+Dynamic functions rely on information that can only be known at request time such as a user's cookies, current requests headers, or the URL's search params. In Next.js, these dynamic functions are:
 
-  - cookies() and headers(): Using these in a Server Component will opt the whole route into dynamic rendering at request time.
-  - searchParams: Using the searchParams prop on a Page will opt the page into dynamic rendering at request time.
-
-- Streaming
-  Streaming is built into the Next.js App Router by default. This helps improve both the initial page loading performance, as well as UI that depends on slower data fetches that would block rendering the whole route. For example, reviews on a product page.
-
-  You can start streaming route segments using loading.js and UI components with React Suspense. See the Loading UI and Streaming section for more information.
+- cookies() and headers(): Using these in a Server Component will opt the whole route into dynamic rendering at request time.
+- searchParams: Using the searchParams prop on a Page will opt the page into dynamic rendering at request time.
