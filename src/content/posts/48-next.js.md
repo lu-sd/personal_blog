@@ -1,5 +1,5 @@
 ---
-title: "notebook when learning next.js"
+title: "Notebook when I am learning next.js"
 publishedAt: 2024-06-25
 description: "Key points for review"
 slug: "48-next.js"
