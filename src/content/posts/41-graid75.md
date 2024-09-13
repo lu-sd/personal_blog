@@ -1,10 +1,9 @@
-e---
-title: "graid75-53,542,49,271,383,409,994,133,155,102,127,20i"
+---
+title: "graid75-53,542,49,271,383,409,994,133,155,102,127,20"
 publishedAt: 2024-05-22
 description: "this is kind of classic aglo problems"
 slug: "41-graid75"
 isPublish: true
-
 ---
 
 53:Given an integer array nums, find the subarray with the largest sum, and return its sum.
@@ -500,7 +499,6 @@ function sumNumbersWithDigitSumEqualToY(x, y) {
   return sum;
 }
 
-// Example usage:
 // Example usage:
 let x = 20;
 let y = 5;
