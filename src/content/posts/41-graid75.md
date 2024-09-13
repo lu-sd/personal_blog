@@ -1,9 +1,10 @@
----
+e---
 title: "graid75-53,542,49,271,383,409,994,133,155,102,127,20i"
 publishedAt: 2024-05-22
 description: "this is kind of classic aglo problems"
 slug: "41-graid75"
 isPublish: true
+
 ---
 
 53:Given an integer array nums, find the subarray with the largest sum, and return its sum.
@@ -468,4 +469,44 @@ function isValid(s: string): boolean {
 
   return stack.length === 0;
 }
+```
+
+give a number x. check all the numbers from 1 to x and then sum up the number digits,how many number equals to y.
+
+```js
+function sumNumbersWithDigitSumEqualToY(x, y) {
+  // Initialize sum to keep track of numbers whose digit sum equals y
+  let sum = 0;
+
+  // Helper function to calculate the sum of digits of a number
+  function getDigitSum(n) {
+    let digitSum = 0;
+    while (n > 0) {
+      digitSum += n % 10; // Add the last digit
+      n = Math.floor(n / 10); // Remove the last digit
+    }
+    return digitSum;
+  }
+
+  // Iterate over all numbers from 1 to x
+  for (let i = 1; i <= x; i++) {
+    // If the sum of the digits of i equals y, add i to the sum
+    if (getDigitSum(i) === y) {
+      sum += 1;
+    }
+  }
+
+  // Return the final result
+  return sum;
+}
+
+// Example usage:
+// Example usage:
+let x = 20;
+let y = 5;
+console.log(
+  "Numbers with digit sum equal to y:",
+  findNumbersWithDigitSumEqualToY(x, y)
+);
+// Output 2 : [5, 14]
 ```
