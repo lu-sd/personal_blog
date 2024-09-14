@@ -1,5 +1,5 @@
 ---
-title: "remove duplicates in array and linked list-26,82,83"
+title: "Remove duplications in array and linked list-26,82,83"
 publishedAt: 2024-08-28
 description: "two pointers implementation and when to use a dummy node"
 slug: "58-twoPointerII"

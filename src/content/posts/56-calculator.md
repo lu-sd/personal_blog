@@ -1,5 +1,5 @@
 ---
-title: "calculator-227,224"
+title: "Calculator-227,224"
 publishedAt: 2024-08-25
 description: "to calculate the result of a basic arithmetic expression represented as a string. It uses a stack to handle the operations and correctly respects operator precedence"
 slug: "56-calculator"
