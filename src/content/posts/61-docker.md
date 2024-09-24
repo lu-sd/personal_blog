@@ -171,7 +171,7 @@ docker run -d -p 8080:80 --name mysql_latest mysql
 docker start <container_name_or_id>
 ```
 
-### Debug
+### Debug CLIs
 
 ```bash
 # view logs from a running or stopped container , you can use -f to follow the logs in real-time, or --tail to show the last few lines:
