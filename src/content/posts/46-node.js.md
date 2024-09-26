@@ -1,7 +1,7 @@
 ---
 title: "Node.js Tutorial"
 publishedAt: 2024-06-16
-description: "node built-in modules"
+description: "node built-in modules and related framework"
 slug: "46-node.js"
 isPublish: true
 ---
@@ -104,6 +104,8 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 ```
+
+Express.js: can be used with Node.js to handle backend logic and serve APIs or static files. It simplifies handling routes, requests, and responses, making it faster to develop server-side logic.
 
 ## URL module
 
