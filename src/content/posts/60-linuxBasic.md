@@ -134,3 +134,30 @@ myapp
 # Instead of
 /home/user/myprograms/myapp
 ```
+
+## socket tcp/ip http
+
+A socket is an endpoint for communication between two machines. It is the programming interface that allows processes (programs) to send and receive data over a network.
+
+Types of Sockets:
+
+- TCP sockets: Used for reliable, connection-oriented communication (e.g., in HTTP, HTTPS).
+- UDP sockets: Used for connectionless, unreliable communication (e.g., in video streaming, online gaming).
+
+In a typical client-server architecture, the client and server communicate over a TCP/IP network, When a browser requests a web page via HTTP, it first establishes a TCP connection using sockets. HTTP requests and responses are sent over this TCP connection.
+
+HTTP (HyperText Transfer Protocol) is an application-layer protocol built on top of the TCP/IP stack. It is used for transmitting hypertext (web pages) between clients (browsers) and servers (web servers).
+
+How http Works:
+
+- A client (usually a web browser) wants to load a webpage.The client process opens a socket and connects to the server’s IP address and port (e.g., port 80 for HTTP).
+
+- TCP/IP establishes a connection between the client and the server.
+
+* The client sends an HTTP request over this TCP connection
+
+- The server process (e.g., web server) reads the HTTP request from its own socket, processes it, and sends back an HTTP response.
+
+* The TCP connection ensures that the data is delivered reliably.
+
+- After the communication, the socket can be closed by either the client or server.
