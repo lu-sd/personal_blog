@@ -257,8 +257,31 @@ export default function FeedbackForm() {
       Greet
     </button>
   );
-}
+}s
 
 ```
 You only need to use state when you want to retain some data across renders or use it in the rendering logic of your component.
 
+## TypeScript
+
+In TypeScript, `Record<string, string>` is a utility type that defines an object where the keys are of type string and the values are also of type string.
+```js
+Record<string, string>
+// This utility type is equivalent to defining an object like this:
+type MyObject = {
+  [key: string]: string;
+};
+// example:
+const user: Record<string, string> = {
+  name: "Alice",
+  age: "25",  // Even though this is typically a number, here it's a string.
+  city: "New York"
+};
+
+console.log(user.name);  // Output: Alice
+console.log(user.age);   // Output: 25
+
+```
+Use Cases:
+* Mapping dynamic data: When you're unsure of the exact keys ahead of time, but you know that both the keys and values will be strings.
+* Restricting key-value pairs: Ensures that all keys and values are strings, providing more type safety in TypeScript.

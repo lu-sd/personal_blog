@@ -340,3 +340,21 @@ Any screen update in a React app happens in three steps:
 Trigger
 Render
 Commit
+
+## To display an array in random order in JavaScript
+
+```js
+const arr = [1, 2, 3, 4, 5];
+
+// Shuffle the array
+const shuffledArray = arr.sort(() => Math.random() - 0.5);
+```
+
+Explanation:
+Math.random() generates a random floating-point number between 0 and 1.
+
+Subtracting 0.5 from Math.random() makes the result either positive or negative, which allows the sort() method to randomly decide the order of elements.
+
+If the result is negative, the elements are swapped.
+If the result is positive, the elements stay in place.
+This gives a randomized ordering of the array elements.
