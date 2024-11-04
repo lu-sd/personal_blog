@@ -64,21 +64,27 @@ A module is a pre-built, reusable piece of code that performs a specific task or
 Modules are at the heart of Ansible automation, enabling you to define specific tasks in your playbooks without needing to write custom scripts for each operation.
 
 ```yaml
-- name: Install Apache
+- name: Install and Configure Apache
   hosts: webservers
-  apt:
-    name: apache2
-    state: present
+  become: yes
+  tasks:
+    - name: Install Apache
+      apt:
+        name: apache2
+        state: present
 
-- name: Ensure Apache is started
-  service:
-    name: apache2
-    state: started
+    - name: Ensure Apache is started
+      service:
+        name: apache2
+        state: started
 
-- name: Copy custom configuration
-  copy:
-    src: /path/to/local/httpd.conf
-    dest: /etc/apache2/httpd.conf
+    - name: Copy custom configuration
+      copy:
+        src: /path/to/local/apache2.conf # Ensure the path matches the correct Apache config file
+        dest: /etc/apache2/apache2.conf # Update this to match the correct destination path
+        owner: root
+        group: root
+        mode: "0644"
 ```
 
 In this playbook:
