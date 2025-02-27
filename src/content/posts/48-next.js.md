@@ -82,3 +82,28 @@ Dynamic functions rely on information that can only be known at request time suc
 
 - cookies() and headers(): Using these in a Server Component will opt the whole route into dynamic rendering at request time.
 - searchParams: Using the searchParams prop on a Page will opt the page into dynamic rendering at request time.
+
+### Why Does Next.js Need Node.js?
+Next.js requires Node.js primarily for:
+
+Server-Side Rendering (SSR) & API Routes
+
+When using SSR (getServerSideProps) or API routes (pages/api), the Next.js server dynamically processes requests on the backend.
+Node.js acts as the server environment to handle these requests.
+Development Server
+
+Running next dev starts a local development server that watches files and rebuilds automatically.
+Static Site Generation (SSG) Build Process
+
+When using getStaticProps, Next.js pre-builds static pages at compile time.
+Node.js executes this build step.
+Middleware & Edge Functions
+
+Custom logic in middleware often runs in a Node.js environment.s
+
+#### Do You Always Need Node.js?
+For Development: Yes, you need Node.js to run Next.js locally.
+For Deployment:
+If using SSR or API routes, you need a Node.js server (e.g., Vercel, AWS Lambda, or a custom Node.js server).
+If using SSG (fully static sites), you can deploy without Node.js (e.g., on static hosts like Netlify, Cloudflare Pages).
+In summary, Node.js is required for development and SSR but optional for static deployments.
