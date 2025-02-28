@@ -285,3 +285,56 @@ console.log(user.age);   // Output: 25
 Use Cases:
 * Mapping dynamic data: When you're unsure of the exact keys ahead of time, but you know that both the keys and values will be strings.
 * Restricting key-value pairs: Ensures that all keys and values are strings, providing more type safety in TypeScript.
+
+### useCallback()
+useCallback() is a React Hook that memoizes a function to prevent unnecessary re-creations on every render. It helps with performance optimization, especially when passing functions as props to child components.
+
+```jsx
+import { useState, useCallback } from "react";
+import Child from "./Child";
+
+export default function Parent() {
+  const [count, setCount] = useState(0);
+
+  // ✅ useCallback ensures function identity remains stable
+  const handleClick = useCallback(() => setCount((prev) => prev + 1), []);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={handleClick}>Increment</button>
+      <Child onClick={handleClick} />
+    </div>
+  );
+}
+
+function Child({ onClick }) {
+  console.log("Child rendered!");
+  return <button onClick={onClick}>Child Button</button>;
+}
+
+```
+useEffect runs whenever one of its dependencies changes. If a function is included in the dependency array, it recreates the function every render, leading to unnecessary effect executions. useCallback() helps optimize this by memoizing the function, preventing unnecessary re-runs.
+
+
+```js
+import { useState, useEffect, useCallback } from "react";
+
+export default function Example() {
+  const [count, setCount] = useState(0);
+
+  // ✅ Memoized function: Will not cause unnecessary re-renders
+  const fetchData = useCallback(() => {
+    console.log("Fetching data...");
+  }, []); // No dependencies → Function never re-creates
+
+  useEffect(() => {
+    fetchData(); // ✅ `fetchData` is now stable
+  }, [fetchData]); // ✅ Won't trigger unless fetchData changes, useEffect only runs once on mount because fetchData remains the same function reference.
+
+  return (
+    <button onClick={() => setCount(count + 1)}>Increment {count}</button>
+  );
+}
+
+```
