@@ -1,10 +1,11 @@
 ---
 title: "Redux"
-publishedAt: 2024-03-01
+publishedAt: 2025-03-01
 description: "Redux,React Reduxt and Redux Toolkit "
 slug: "65-reudx"
 isPublish: true
 ---
+
 Redux is a library for managing global application state
 * Redux is typically used with the React-Redux library for integrating Redux and React together
 * Redux Toolkit is the standard way to write Redux logic
@@ -16,7 +17,7 @@ Redux's update pattern separates "what happened" from "how the state changes"
 
 Redux Toolkit(RTK) includes utilities that help simplify many common use cases, including store setup, creating reducers and writing immutable update logic, and even creating entire "slices" of state at once.
 
-### Basic Example
+### Basic Examples
 
 createSlice is a function in Redux Toolkit (@reduxjs/toolkit) that simplifies creating Redux state slices, including: ✅ State → Defines the initial state.
 ✅ Reducers → Defines how the state is updated.
@@ -102,3 +103,4 @@ If you're using RTK Query in an Express app (server-side) or any environment wit
 ❌ No DevTools support – API responses won't be stored in Redux DevTools.
 
 ✅ Still works for making API requests.
+

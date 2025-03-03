@@ -107,3 +107,11 @@ For Deployment:
 If using SSR or API routes, you need a Node.js server (e.g., Vercel, AWS Lambda, or a custom Node.js server).
 If using SSG (fully static sites), you can deploy without Node.js (e.g., on static hosts like Netlify, Cloudflare Pages).
 In summary, Node.js is required for development and SSR but optional for static deployments.
+
+### Why Use <Suspense fallback={null} /> in a Next.js Client-Only App (With Express Backend)?
+
+Even if you only use Next.js as a frontend and handle the backend with Express, you may still need <Suspense> for certain React features, such as:
+
+✅ It reduces the initial JavaScript bundle size (via code splitting).
+✅ It enables server-side streaming (faster SSR responses).
+✅ It improves hydration performance (progressive hydration).
