@@ -22,10 +22,19 @@ Prisma Client is an example of a "client" in backend development that allows you
 
 - Prisma is an open-source ORM (Object-Relational Mapping) tool for Node.js and TypeScript applications. It helps developers interact with databases in a more intuitive and type-safe way.
 
-- Prisma Client is the auto-generated, type-safe query builder that Prisma provides. It allows developers to easily perform database operations like creating, reading, updating, and deleting (CRUD) records in a database.
+- Prisma Client allows developers to easily perform database operations like creating, reading, updating, and deleting (CRUD) records in a database. Run npx prisma generate after schema changes or fresh installs, which Generates TypeScript client (@prisma/client) for querying the database.
 
       - It is generated based on your database schema. It provides methods that allow your application to interact with the database without writing raw SQL queries.
       - This client operates within the server-side part of your application. When your server receives a request from a user (via the web client), it might use the Prisma Client to query or update the database as part of processing that request.
+
+What Happens When You Run prisma generate?
+✅ It creates TypeScript types and query methods for your database models inside @prisma/client.
+✅ It ensures that PrismaClient knows about the latest schema changes (schema.prisma).
+✅ It regenerates database query functions for TypeScript auto-completion and type safety.
+
+What Happens When You Run npx prisma migrate dev --name init? 
+--Applies schema changes to the database and creates a migration file.
+
 
 ### Fetch
 
@@ -56,4 +65,4 @@ The role of fetch is to act as a client for HTTP communication. It allows the br
 
 **_A promise_** is an object representing the eventual completion or failure of an asynchronous operation.
 
-Consuming a promise involves using methods like .then(), .catch(), and .finally() or using the async/await(It allows you to write asynchronous code that looks synchronous, making it easier to follow.) syntax.
+Consuming a promise involves using methods like .then(), .catch(), and .finally() or using the async/await(It allows you to write asynchronous code that looks synchronous, making it easier to follow.
