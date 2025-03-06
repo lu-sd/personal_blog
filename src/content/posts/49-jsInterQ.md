@@ -226,6 +226,9 @@ Virtual DOM: React minimizes performance issues by batching updates and only app
 DOM: Imperative approach, where developers describe how to change the UI.
 Virtual DOM: Declarative approach, where developers describe what the UI should look like, and React handles the changes.
 
+### what is JSX?
+JSX is just a JavaScript extension that allows us to represent React’s tree of objects with a syntax that looks like an HTML template. Browsers don’t have to deal with JSX at all and React does not have to deal with it either! Only the compiler does.
+
 ### what is callback
 
 A callback is a function that you pass into another function as an argument, and this callback function gets executed (or "called back") after the completion of that function.
