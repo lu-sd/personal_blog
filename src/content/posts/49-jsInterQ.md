@@ -195,7 +195,7 @@ Hoisting is the default behaviour of javascript where all the variable and funct
 
 ### what is DOM?
 
-The DOM (Document Object Model) is like a tree structure that represents all the content and elements on a webpage. It helps the browser understand and display the page, and it allows JavaScript to interact with the page—such as changing text, updating styles, or handling user input—while the page is running.
+The DOM (Document Object Model) is like a tree structure that represents all the content and elements on a webpage. It helps the browser understand and display the page, and it allows JavaScript to interact with the page.
 
 In simple terms, the DOM is a bridge between the webpage's structure (HTML) and how you can control or update it using JavaScript.
 
@@ -227,6 +227,7 @@ DOM: Imperative approach, where developers describe how to change the UI.
 Virtual DOM: Declarative approach, where developers describe what the UI should look like, and React handles the changes.
 
 ### what is JSX?
+
 JSX is just a JavaScript extension that allows us to represent React’s tree of objects with a syntax that looks like an HTML template. Browsers don’t have to deal with JSX at all and React does not have to deal with it either! Only the compiler does.
 
 ### what is callback
