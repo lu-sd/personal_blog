@@ -115,3 +115,40 @@ Even if you only use Next.js as a frontend and handle the backend with Express, 
 ✅ It reduces the initial JavaScript bundle size (via code splitting).
 ✅ It enables server-side streaming (faster SSR responses).
 ✅ It improves hydration performance (progressive hydration).
+
+### useSearchParams() vs URLSearchParams()
+
+Next.js provides the useSearchParams() hook to work with query parameters in client components(?name=John) and useParams() to handle dynamic route segments (/post/:id).Works only in Next.js App Router (app/ directory).Read-only (modifications require router.push())
+
+Use URLSearchParams  is a built-in JavaScript interface using when you need to read or manipulate query parameters in a URL  in a server environment or using JavaScript globally. Handles query parameters (?key=value) in any JavaScript environment (browser, Node.js).Can modify parameters (append, set, delete)
+
+Example: Update Query Parameters (Without Reloading Page)
+
+```js
+'use client';
+import { useSearchParams, useRouter } from 'next/navigation';
+
+export default function UpdateQueryParams() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const updateQuery = () => {
+    const newParams = new URLSearchParams(searchParams.toString());
+    newParams.set('name', 'Alice');
+    newParams.set('age', '28');
+    
+    router.push(`?${newParams.toString()}`); // Update URL without full reload
+  };
+
+  return (
+    <div>
+      <button onClick={updateQuery}>Update Query Params</button>
+    </div>
+  );
+}
+
+```
+Final Takeaway
+* URLSearchParams is for general JavaScript use.
+* useSearchParams() is a Next.js App Router hook for reading query parameters in React.
+* To modify query params in Next.js, use router.push() with URLSearchParams.
