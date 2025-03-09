@@ -1,5 +1,5 @@
 ---
-title: "Basic Linux "
+title: "Basic Linux and aws "
 publishedAt: 2024-09-15
 description: "Linux can help you understand digital world better after you understading it"
 slug: "60-linuxBasic"
@@ -161,3 +161,23 @@ How http Works:
 * The TCP connection ensures that the data is delivered reliably.
 
 - After the communication, the socket can be closed by either the client or server.
+
+### Network in aws
+In AWS, a VPC (Virtual Private Cloud) is a logically isolated network within the AWS cloud that you can use to define and control your own network environment.
+
+Why Use a VPC?
+
+Isolate your resources for security.
+Control inbound and outbound network traffic.
+Customize networking (IP addressing, routing, etc.).
+Secure communication between services in AWS.
+#### Route Table vs Security Group
+1. Route Table
+🔹 Controls network traffic routing at the subnet level (entire network).
+🔹 Defines where traffic should go (e.g., within VPC, to the internet, to another VPC).
+🔹 Each subnet must be associated with a route table.
+
+2. Security Group
+🔹 Controls inbound and outbound traffic at the instance level (individual resources).
+🔹 Works as a virtual firewall that defines what traffic can reach or leave an EC2 instance.
+🔹 Stateful: If inbound traffic is allowed, the response is automatically allowed.
