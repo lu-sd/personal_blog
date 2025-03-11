@@ -22,6 +22,10 @@ isPublish: true
   <div className="absolute inset-0 bg-black bg-opacity-60"></div>
   {/* Centered Text */}
   <div className="absolute top-1/3 transform -translate-x-1/2 -translate-y-1/2 text-center w-full">">Some texts on top of image<div/>
+  {/* alternative Centered Text */} 
+  <div className="absolute inset-0 flex items-center justify-center text-center">
+  Some texts on top of image
+  </div>
 </div>
  
 ```
@@ -39,8 +43,18 @@ object-center: Image crops from the center.Ensuring important content is centere
 ### Creates a full-width hero section with a centered overlay and content, making it ideal for landing pages or headers.
 
 ```js
+
 <div className="h-[50vh] bg-[url('/images/hero.jpg')] bg-cover bg-center bg-black/55 bg-blend-overlay text-center flex items-center justify-center">
   {/* Content goes here */}
 </div>
 
 ```
+* Background Sizing & Positioning:
+bg-cover → Ensures the image covers the entire div (background-size: cover).
+bg-center → Centers the background image (background-position: center).
+* Overlay Effect: bg-black/55 bg-blend-overlay
+bg-black/55 → Applies a black overlay with 55% opacity.
+bg-blend-overlay → Blends the background image with the overlay.
+* Text & Content Alignment:
+text-center → Centers the text horizontally.
+flex items-center justify-center → Uses Flexbox to center content both vertically and horizontally.
