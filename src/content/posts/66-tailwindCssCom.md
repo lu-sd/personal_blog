@@ -5,7 +5,7 @@ description: "some classic design"
 slug: "66-tailwindCssCom"
 isPublish: true
 ---
-## Creates a hero section with an image background, a dark overlay, and centered text on top:
+### Creates a hero section with an image background, a dark overlay, and centered text on top:
 
 ```js
 <div className="relative h-screen">
@@ -36,4 +36,11 @@ object-cover: Ensures the image fills the container without distortion (cropping
 object-contain:Image fits inside without cropping.Use case:Logos, icons, profile pictures.
 
 object-center: Image crops from the center.Ensuring important content is centered.
+### Creates a full-width hero section with a centered overlay and content, making it ideal for landing pages or headers.
 
+```js
+<div className="h-[50vh] bg-[url('/images/hero.jpg')] bg-cover bg-center bg-black/55 bg-blend-overlay text-center flex items-center justify-center">
+  {/* Content goes here */}
+</div>
+
+```
