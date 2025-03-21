@@ -5,15 +5,18 @@ description: "One day maybe save your life"
 slug: "51-tricksInCss"
 isPublish: true
 ---
-### transition from height 0 to auto 
+### transition from height 0 to auto
+This creates a smooth expansion effect on hover.
 ```html
- <div class="m-4 grid grid-rows-[0] rounded-md bg-blue-200 bg-opacity-40 p-4 transition-all duration-500 ease-in-out hover:grid-rows-1">
+ <div class="m-4 grid grid-rows-[0fr] rounded-md bg-blue-200 bg-opacity-40 p-4 transition-all duration-500 ease-in-out hover:grid-rows-1fr">
       <div class="overflow-hidden">Expandable content</div>
   </div>
 ```
 <div class="m-4 grid grid-rows-[0] rounded-md bg-blue-200 bg-opacity-40 p-4 transition-all duration-500 ease-in-out hover:grid-rows-1">
     <div class="overflow-hidden">Expandable content</div>
 </div>
-
+grid-rows-[0fr]: sets the first row height to 0 (collapsed).
+hover:grid-rows-[1fr]: sets the row height to fill its content on hover.
+overflow-hidden: ensures the content is hidden when the row height is 0fr.
 ### flex basis
 Utilities for controlling the initial size of flex items.It can be width or height according to your orientation.
