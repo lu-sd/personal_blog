@@ -2,7 +2,7 @@
 title: "fill() in js"
 publishedAt: 2024-02-07
 description: "more details about the method"
-slug: "20-fill"
+slug: "21-fill"
 isPublish: true
 ---
 
