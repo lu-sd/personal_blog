@@ -10,7 +10,22 @@ isPublish: true
 
 Shell: A shell interprets the commands given by the user and passes them to the kernel for execution. There are different types of shells, such as Bash, Zsh, and Fish.
 
-Terminal: A terminal (or terminal emulator) is a program that provides access to the shell. It allows you to type commands and see the output. The terminal itself doesn't execute commands; it just displays the shell's interface. Examples of terminal programs include GNOME Terminal, Windows Terminal, and iTerm2 on macOS.
+Terminal: A terminal (or terminal emulator) is a program that provides access to the shell. It allows you to type commands and see the output. The terminal itself doesn't execute commands; it just displays the shell's interface.
+
+So if your terminal is just a program that lets you issue text-based commands and renders the output of those commands...What is the program that runs those commands???
+
+That's a shell.Shells are often referred to as "REPL"s. REPL stands for:
+
+Read
+Eval (evaluate)
+Print
+Loop
+This is a fancy way of saying that shells are programs that:
+
+Read the commands you type
+Evaluate those commands, usually by running other programs on your computer
+Print the output of those commands
+Give you a new prompt to type another command and repeat
 
 Bash: Bash stands for Bourne Again Shell, and it's one of the most widely used shells, especially on Linux and macOS systems. It's a specific type of shell with its own syntax and built-in commands.
 In short:
