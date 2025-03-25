@@ -196,3 +196,12 @@ Secure communication between services in AWS.
 🔹 Controls inbound and outbound traffic at the instance level (individual resources).
 🔹 Works as a virtual firewall that defines what traffic can reach or leave an EC2 instance.
 🔹 Stateful: If inbound traffic is allowed, the response is automatically allowed.
+### powerful tool
+```bash
+# find a file by name
+find some_directory -name hello.txt
+# search files match a pattern
+find some_directory -name "*.txt"
+# Find all filenames that contain the word "chad"
+find some_directory -name "*chad*"
+```
