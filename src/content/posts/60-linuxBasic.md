@@ -199,9 +199,18 @@ Secure communication between services in AWS.
 ### powerful tool
 ```bash
 # find a file by name
-find some_directory -name hello.txt
+find some_directory -name hello.txtc
 # search files match a pattern
 find some_directory -name "*.txt"
 # Find all filenames that contain the word "chad"
 find some_directory -name "*chad*"
+
+man ls
+# You'll notice that the manual is an interactive session. Page through the manual with the spacebar, and quit with q.
+
+# type '/xx' to start searching
+
+# press 'n' to jump to the next result
+
+# press 'N' to go back if you went too far
 ```
