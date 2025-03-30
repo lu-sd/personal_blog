@@ -140,5 +140,6 @@ result = reduce(lambda x, y: x + y, nums, 10)
 
 print(result)  # Output: 16
 
-
 ```
+### pass by value and reference
+Most collection types are passed by reference (except for tuples) and most primitive types are passed by value.
