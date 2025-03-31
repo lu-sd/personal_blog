@@ -141,5 +141,20 @@ result = reduce(lambda x, y: x + y, nums, 10)
 print(result)  # Output: 16
 
 ```
+### sorted(iterable, key?=function, reverse?=True)
+--works on any iterable, returns a new list.
+
+The key parameter takes a function that is applied to each item in the iterable before sorting. The values returned by this function are what Python uses to compare the items.
+
+```py
+def sort_dates(dates):
+    return sorted(dates, key=format_date)
+
+
+def format_date(date):
+    month, day, year = date.split("-")
+    return year + month + day
+
+```
 ### pass by value and reference
 Most collection types are passed by reference (except for tuples) and most primitive types are passed by value.
