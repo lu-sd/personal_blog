@@ -141,6 +141,26 @@ result = reduce(lambda x, y: x + y, nums, 10)
 print(result)  # Output: 16
 
 ```
+✅ JavaScript:
+Only arrays have .map(), .filter(), .reduce() methods.
+
+Other iterables (like Set, Map, String, custom iterables) must be converted to an array first.
+
+You often use Array.from() or [...iterable] to make it work.
+
+```js
+const set = new Set([1, 2, 3]);
+[...set].map(x => x * 2); // ✅ Works
+set.map(x => x * 2);      // ❌ Error: not a function
+```
+✅ Python:
+Any iterable (lists, sets, tuples, generators, strings...) works directly with map(), filter(), reduce() (with caveats).
+
+map() and filter() return iterators (in Python 3), so you often wrap them in list().
+
+Python's map() and filter() are functions, not methods. You pass the iterable to them.
+
+
 ### sorted(iterable, key?=function, reverse?=True)
 --works on any iterable, returns a new list.
 
@@ -156,5 +176,63 @@ def format_date(date):
     return year + month + day
 
 ```
+
+### extend()
+.extend() is a method that adds elements from an iterable to the end of a list.
+
+Unlike .append(), which adds a single item, .extend() unpacks the iterable and adds each element individually.
+```py
+# example 1
+a = [1, 2]
+b = [3, 4]
+
+a.append(b)
+print(a)  # [1, 2, [3, 4]]  ← b is added as a single element
+
+a = [1, 2]
+a.extend(b)
+print(a)  # [1, 2, 3, 4]    ← b is unpacked and added element by element
+
+# example 2
+a = [1, 2]
+a.extend("hi")
+print(a)  # [1, 2, 'h', 'i'] — because strings are iterables!
+
+# common use cases:
+
+# 1.merging lists:
+result = []
+for sublist in [[1, 2], [3], [4, 5]]:
+    result.extend(sublist)
+print(result)  # [1, 2, 3, 4, 5]
+
+# 2.Recursively collecting results:
+def list_files(parent_directory, current_filepath):
+    file_paths = []
+    
+    for name, content in parent_directory.items():
+        new_path = f"{current_filepath}/{name}"
+        
+        if content is None:
+            # It's a file
+            file_paths.append(new_path)
+        else:
+            # It's a directory: recursive call
+            file_paths.extend(list_files(content, new_path))
+    
+    return file_paths
+
+```
+#### .flat() in js vs .entend() in python
+.flat() returns a new array where nested arrays are flattened one level deep.
+```js
+const arr = [1, 2, [3, 4], [5, [6]]];
+console.log(arr.flat());     
+// [1, 2, 3, 4, 5, [6]]     (flattens one level)
+// You can flatten deeper by passing a depth: arr.flat(2)
+```
+.extend() adds all elements of another iterable to the list, but does not recurse into deeper levels.
+It’s more like JavaScript’s push(...items)
+
 ### pass by value and reference
 Most collection types are passed by reference (except for tuples) and most primitive types are passed by value.
