@@ -234,10 +234,52 @@ console.log(arr.flat());
 .extend() adds all elements of another iterable to the list, but does not recurse into deeper levels.
 It’s more like JavaScript’s push(...items)
 
+#### enumerate(iterable, start = 0)
+
+numerate() adds a counter (index) to an iterable, returning it as an enumerate object which yields (index, value) pairs.
+```py
+# without enumerate(), need manual indexing
+i = 0
+for fruit in fruits:
+    print(i, fruit)
+    i += 1
+
+for i, val in enumerate([10, 20, 30]):
+    if val == 20:
+        print("Found at index", i)  # Output: Found at index 1
+
+# example 
+def args_logger(*args, **kwargs):
+    # Print numbered positional arguments
+    for i, arg in enumerate(args, 1):
+        print(f"{i}. {arg}")
+    
+    # Print keyword arguments with *
+    for key, value in kwargs.items():
+        print(f"* {key}: {value}")
+
+```
+In Python, *args and **kwargs allow a function to accept and deal with a variable number of arguments.
+
+*args collects positional arguments into a tuple
+**kwargs collects keyword (named) arguments into a dictionary
+
+```py
+def my_decorator(func):
+    def wrapper(*args, **kwargs):
+        print("Calling:", func.__name__)
+        return func(*args, **kwargs)
+    return wrapper
+
+@my_decorator
+def some_func:
+```
+
+
 ### pass by value and reference
 Most collection types are passed by reference (except for tuples) and most primitive types are passed by value.
 
-### currying
+### currying and decorators
 ```py
 # How many lines contain the sequence "aa"? 
 def lines_with_sequence(char):
@@ -257,3 +299,4 @@ def lines_with_sequence(char):
     return with_char
 
 ```
+Python decorators are just another (sometimes simpler) way of writing a higher-order function. The *args and **kwargs syntax is great for decorators that are intended to work on functions with different signatures.
