@@ -293,10 +293,28 @@ def lines_with_sequence(char):
                 if sequence in line:
                     count += 1
             return count
-
+q
         return with_length
 
     return with_char
 
 ```
 Python decorators are just another (sometimes simpler) way of writing a higher-order function. The *args and **kwargs syntax is great for decorators that are intended to work on functions with different signatures.
+### Enum
+Enum (short for enumeration) is a class in the enum module that allows you to define a set of named constant values. It makes your code more readable, self-documenting, and less error-prone by avoiding "magic numbers" or ambiguous strings.
+```py
+from enum import Enum
+
+class Status(Enum):
+    PENDING = 1
+    PROCESSING = 2
+    SUCCESS = 3
+    FAILURE = 4
+
+print(Status.PENDING.name)   # "PENDING"
+print(Status.PENDING.value)  # 1
+
+for s in Status:
+    print(s.name, s.value)
+
+```
