@@ -55,6 +55,15 @@ squared = map(lambda x: x ** 2, numbers)
 
 print(list(squared))  # Output: [1, 4, 9, 16, 25]
 
+# Imagine you're exporting raw data to CSV format, and the data looks like this:
+data = [
+    [1, 2, 3],
+    [True, None, "Text"]
+]
+# To write this to a file, you need all values to be strings. Using nested map:
+str_data = list(map(lambda row: list(map(str, row)), data))
+
+
 # filter()
 words = ["hello", "", "world", "", "python"]
 non_empty = filter(None, words)
@@ -280,6 +289,7 @@ def some_func:
 Most collection types are passed by reference (except for tuples) and most primitive types are passed by value.
 
 ### currying and decorators
+
 ```py
 # How many lines contain the sequence "aa"? 
 def lines_with_sequence(char):
@@ -293,13 +303,14 @@ def lines_with_sequence(char):
                 if sequence in line:
                     count += 1
             return count
-q
+
         return with_length
 
     return with_char
 
 ```
 Python decorators are just another (sometimes simpler) way of writing a higher-order function. The *args and **kwargs syntax is great for decorators that are intended to work on functions with different signatures.
+
 ### Enum
 Enum (short for enumeration) is a class in the enum module that allows you to define a set of named constant values. It makes your code more readable, self-documenting, and less error-prone by avoiding "magic numbers" or ambiguous strings.
 ```py
