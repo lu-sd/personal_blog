@@ -214,3 +214,16 @@ man ls
 
 # press 'N' to go back if you went too far
 ```
+sed (short for stream editor) is a powerful Unix/Linux command-line utility used for parsing and transforming text. It's commonly used to search, replace, insert, and delete lines in files or input streams.
+```bash
+# Basic sed command to replace text in a file
+# Replaces first occurrence of "original" with "replacement" in each line of file.txt
+sed 's/original/replacement/' file.txt
+# Replace all occurrences of "original" with "replacement" in each line of file.txt
+sed 's/original/replacement/g' file.txt
+# Insert a line before/after a match
+sed '/pattern/i This is inserted above' file.txt
+sed '/pattern/a This is inserted below' file.txt
+# Change all occurrences of ‘Chr1’ to ‘Chromosome 1’ and write changed output to a new file
+cat file.txt | sed 's/Chr1/Chromosome 1/g' > file2.txt
+```
